@@ -1,0 +1,18 @@
+<p>
+  <b>Name:</b>
+  <%=h @device.name %>
+</p>
+
+<p>
+  <b>Url:</b>
+  <%=h @device.url %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%=h @device.description %>
+</p>
+
+
+<%= link_to 'Edit', edit_device_path(@device) %> |
+<%= link_to 'Back', devices_path %>
