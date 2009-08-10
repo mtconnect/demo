@@ -5,8 +5,6 @@ class CreateDevices < ActiveRecord::Migration
       t.string :url
       t.text :description
       t.boolean :application
-      t.string :image_file
-      t.string :logo_file
 
       t.timestamps
     end

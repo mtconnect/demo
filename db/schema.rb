@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090729225758) do
+ActiveRecord::Schema.define(:version => 20090730001620) do
 
   create_table "devices", :force => true do |t|
     t.string   "name",        :default => ""
@@ -23,5 +23,19 @@ ActiveRecord::Schema.define(:version => 20090729225758) do
   end
 
   add_index "devices", ["name"], :name => "index_devices_on_name"
+
+  create_table "images", :force => true do |t|
+    t.integer  "size",         :default => 0
+    t.string   "content_type", :default => ""
+    t.string   "filename",     :default => ""
+    t.integer  "height",       :default => 0
+    t.integer  "width",        :default => 0
+    t.integer  "parent_id",    :default => 0
+    t.string   "thumbnail",    :default => ""
+    t.string   "type",         :default => ""
+    t.integer  "device_id",    :default => 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end
