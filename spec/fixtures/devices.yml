@@ -8,8 +8,6 @@
 #  url         :string(255)     default("")
 #  description :text            default("")
 #  application :boolean
-#  image_file  :string(255)     default("")
-#  logo_file   :string(255)     default("")
 #  created_at  :datetime
 #  updated_at  :datetime
 #

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MTConnectStreams xmlns:m="urn:mtconnect.com:MTConnectStreams:1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="urn:mtconnect.com:MTConnectStreams:1.0" xsi:schemaLocation="urn:mtconnect.com:MTConnectStreams:1.0 /schemas/MTConnectStreams.xsd">
+  <Header creationTime="2009-05-23T01:07:58+00:00" sender="localhost" instanceId="1242926374" bufferSize="131072" version="1.0" nextSequence="31743600" firstSequence="31612528" lastSequence="31743599" />
+  <Streams>
+    <DeviceStream name="LinuxCNC" uuid="000">
+      <ComponentStream uuid="000" name="LinuxCNC">
+        <Events>
+          <Alarm dataItemId="3" timestamp="2009-02-26T02:02:35.716224" name="alarm" code="CRASH" severity="ERROR" nativeCode="NativeCRASH" state="ACTIVE" sequence="123456">This device has crashed</Alarm>
+        </Events>
+      </ComponentStream>
+      <ComponentStream component="Axes" name="Axes" componentId="5">
+        <Samples>
+          <PathFeedrate dataItemId="6" name="path_feedrate" sequence="31743567" subType="ACTUAL" timestamp="2009-05-23T01:07:58.816294">0.4</PathFeedrate>
+          <PathFeedrate dataItemId="25" name="feed_ovr" sequence="3118934" subType="OVERRIDE" timestamp="2009-05-21T20:26:44.483862">100</PathFeedrate>
+        </Samples>
+      </ComponentStream>
+      <ComponentStream component="Spindle" name="S" componentId="10">
+        <Samples>
+          <SpindleSpeed dataItemId="12" name="Sspeed" sequence="31677661" subType="ACTUAL" timestamp="2009-05-23T01:04:23.344015">3400</SpindleSpeed>
+          <SpindleSpeed dataItemId="13" name="Sovr" sequence="3118935" subType="OVERRIDE" timestamp="2009-05-21T20:26:44.483862">100</SpindleSpeed>
+        </Samples>
+        <Events>
+          <ToolName dataItemId="31" name="tool_name" sequence="31743599" timestamp="2009-05-21T20:26:44.483862">DrillBit</ToolName>
+        </Events>
+      </ComponentStream>
+      <ComponentStream component="Linear" name="X" componentId="7">
+        <Samples>
+          <Position dataItemId="14" name="Xact" sequence="31743596" subType="ACTUAL" timestamp="2009-05-23T01:07:58.912300">-0.287043</Position>
+          <Position dataItemId="15" name="Xcom" sequence="31743598" subType="COMMANDED" timestamp="2009-05-23T01:07:58.912300">-0.282167</Position>
+        </Samples>
+      </ComponentStream>
+      <ComponentStream component="Linear" name="Y" componentId="8">
+        <Samples>
+          <Position dataItemId="16" name="Yact" sequence="31743597" subType="ACTUAL" timestamp="2009-05-23T01:07:58.912300">0.738001</Position>
+          <Position dataItemId="17" name="Ycom" sequence="31743599" subType="COMMANDED" timestamp="2009-05-23T01:07:58.912300">0.739808</Position>
+        </Samples>
+      </ComponentStream>
+      <ComponentStream component="Linear" name="Z" componentId="9">
+        <Samples>
+          <Position dataItemId="18" name="Zact" sequence="31678738" subType="ACTUAL" timestamp="2009-05-23T01:04:27.916276">-0.1</Position>
+          <Position dataItemId="19" name="Zcom" sequence="31678726" subType="COMMANDED" timestamp="2009-05-23T01:04:27.868273">-0.1</Position>
+        </Samples>
+      </ComponentStream>
+      <ComponentStream component="Controller" name="Controller" componentId="11">
+        <Events>
+          <Block dataItemId="20" name="block" sequence="31743562" timestamp="2009-05-23T01:07:58.804294">X-0.256711 Y0.749242</Block>
+          <ControllerMode dataItemId="21" name="mode" sequence="3118932" timestamp="2009-05-21T20:26:44.483862">AUTOMATIC</ControllerMode>
+          <Line dataItemId="22" name="line" sequence="31743556" timestamp="2009-05-23T01:07:58.804294">611</Line>
+          <Program dataItemId="23" name="program" sequence="3118931" timestamp="2009-05-21T20:26:44.483862">/HOME/MTCONNECT/SIMULATOR/SPIRAL.NGC</Program>
+          <Execution dataItemId="24" name="execution" sequence="31677812" timestamp="2009-05-23T01:04:23.788041">ACTIVE</Execution>
+        </Events>
+      </ComponentStream>
+      <ComponentStream component="Power" name="power" componentId="2">
+        <Events>
+          <PowerStatus dataItemId="1" name="power" sequence="3118920" timestamp="2009-05-21T20:26:44.483862">ON</PowerStatus>
+        </Events>
+      </ComponentStream>
+    </DeviceStream>
+  </Streams>
+</MTConnectStreams>

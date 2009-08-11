@@ -16,8 +16,6 @@ ActiveRecord::Schema.define(:version => 20090730001620) do
     t.string   "url",         :default => ""
     t.text     "description", :default => ""
     t.boolean  "application"
-    t.string   "image_file",  :default => ""
-    t.string   "logo_file",   :default => ""
     t.datetime "created_at"
     t.datetime "updated_at"
   end

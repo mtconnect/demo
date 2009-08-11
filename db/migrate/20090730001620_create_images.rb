@@ -10,6 +10,7 @@ class CreateImages < ActiveRecord::Migration
                             # Only populated if the current object is a thumbnail.
       t.string  :thumbnail   # the 'type' of thumbnail this attachment record describes.
       t.string  :type
+      
       t.references :device
       t.timestamps
     end

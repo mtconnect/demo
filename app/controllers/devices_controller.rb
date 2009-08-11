@@ -2,7 +2,7 @@ class DevicesController < ApplicationController
   # GET /devices
   # GET /devices.xml
   def index
-    @devices = Device.all
+    @devices = Device.all(:include => :button)
 
     respond_to do |format|
       format.html # index.html.erb
