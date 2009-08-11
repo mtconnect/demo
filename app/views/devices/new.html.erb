@@ -16,6 +16,10 @@
     <%= f.text_area :description %>
   </p>
   <p>
+    <%= f.label :application %>
+    <%= f.check_box(:application) %>
+  </p>
+  <p>
     <%= f.submit 'Create' %>
   </p>
 <% end %>
