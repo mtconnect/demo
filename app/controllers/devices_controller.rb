@@ -21,6 +21,15 @@ class DevicesController < ApplicationController
     end
   end
 
+  def update_hmi
+    @device = Device.find(params[:id])
+
+    respond_to do |format|
+      format.html { render :partial => 'hmi' }
+      format.xml  { render :xml => @device }
+    end
+  end
+
   # GET /devices/new
   # GET /devices/new.xml
   def new

@@ -55,4 +55,5 @@ describe Device do
 
     actual.first.value.should == '-0.287043'
   end
-end
+
+  end

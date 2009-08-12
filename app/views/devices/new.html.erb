@@ -1,6 +1,6 @@
 <h1>New device</h1>
 
-<% form_for(@device) do |f| %>
+<% form_for(@device, :html => { :multipart => true }) do |f| %>
   <%= f.error_messages %>
 
   <p>
@@ -14,6 +14,12 @@
   <p>
     <%= f.label :description %><br />
     <%= f.text_area :description %>
+  </p>
+  <p>
+    <%= f.file_field :button %>
+  </p>
+  <p>
+    <%= f.file_field :picture %>
   </p>
   <p>
     <%= f.label :application %>

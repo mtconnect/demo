@@ -14,12 +14,12 @@
 </p>
 
 <div id="hmi">
-  <%= render :partial => 'hmi'
+  <%= render :partial => 'hmi' %>
 </div>
 
 <%= periodically_call_remote(:update => 'hmi',
                              :frequency => '2',
-                             :url => {:action => 'update_hmi'}) -%>
+                             :url => {:action => 'update_hmi', :id => @device.id }) -%>
 
 <%= link_to 'Edit', edit_device_path(@device) %> |
 <%= link_to 'Back', devices_path %>

@@ -42,4 +42,20 @@ class Device < ActiveRecord::Base
       nil
     end
   end
+
+  def button=(button)
+    if !button.is_a?(Button)
+      self[:button] = Button.create(:uploaded_data => button)
+    else
+      self[:button] = button
+    end
+  end
+
+  def picture=(picture)
+    if !picture.is_a?(Picture)
+      self[:picture] = Picture.create(:uploaded_data => picture)
+    else
+      self[:picture] = picture
+    end
+  end
 end
