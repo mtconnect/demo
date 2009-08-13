@@ -1,25 +1,26 @@
-<p>
-  <b>Name:</b>
-  <%=h @device.name %>
-</p>
+<% if @device.application -%>
+  <div id="application">
+<% else -%>
+  <div id="device">
+<% end -%>
 
-<p>
-  <b>Url:</b>
-  <%=h @device.url %>
-</p>
+<a href="/" id="return">Return</a>
 
-<p>
-  <b>Description:</b>
-  <%=h @device.description %>
-</p>
-
-<div id="hmi">
-  <%= render :partial => 'hmi' %>
+<div id="logo">
+  <%= image_tag(@device.button.public_filename) %>
 </div>
 
-<%= periodically_call_remote(:update => 'hmi',
-                             :frequency => '2',
-                             :url => {:action => 'update_hmi', :id => @device.id }) -%>
+<div id="info">
+  <%= @device.description %>
+</div>
 
-<%= link_to 'Edit', edit_device_path(@device) %> |
-<%= link_to 'Back', devices_path %>
+<div id="booth">
+  <%= @device.booth %>
+</div>
+
+<% if @device.application -%>
+  <%= render :partial => 'application' %>
+<% else -%>
+  <%= render :partial => 'device' %>
+<% end -%>
+</div>

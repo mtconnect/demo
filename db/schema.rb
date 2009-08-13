@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090730001620) do
+ActiveRecord::Schema.define(:version => 20090813061912) do
 
   create_table "devices", :force => true do |t|
     t.string   "name",        :default => ""
@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(:version => 20090730001620) do
     t.boolean  "application"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "booth",       :default => ""
   end
 
   add_index "devices", ["name"], :name => "index_devices_on_name"
@@ -35,5 +36,7 @@ ActiveRecord::Schema.define(:version => 20090730001620) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "images", ["device_id"], :name => "index_images_on_device_id"
 
 end

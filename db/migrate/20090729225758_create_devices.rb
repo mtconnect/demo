@@ -3,6 +3,7 @@ class CreateDevices < ActiveRecord::Migration
     create_table :devices do |t|
       t.string :name
       t.string :url
+      t.string :booth
       t.text :description
       t.boolean :application
 

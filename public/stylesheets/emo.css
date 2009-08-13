@@ -1,0 +1,190 @@
+/* @override http://localhost:3000/stylesheets/emo.css?1250200429 */
+
+
+body {
+    background: black;
+    padding: 0;
+    margin: 0;
+    font-family: "Lucida Grande", Lucida, Verdana, sans-serif;
+}
+
+#return {
+	text-indent: -5000px;
+	display: block;
+	height: 43px;
+	width: 302px;
+	position: absolute;
+	top: 30px;
+	left: 610px;
+}
+
+#welcome {
+    background: url(/images/welcome.png) no-repeat;
+    padding: 0;
+    margin: 0;
+    height: 755px;
+}
+
+#welcome a.new {
+    background: white;
+    position: absolute;
+    top: 730px;
+    left: 400px;
+}
+
+#device, #application {
+    padding: 0;
+    margin: 0;
+    height: 755px;
+}
+
+#device {
+    background: url(/images/machine.jpg) no-repeat;
+}
+
+#application {
+    background: url(/images/application.jpg) no-repeat;
+}
+
+#devices {
+    position: absolute;
+    left: 60px;
+    top: 126px;
+}
+
+#devices td {
+    text-align: center;
+    padding-bottom: 40px;
+}
+
+#devices td a.item {
+    height: 70px;
+    width: 165px;
+    display: block;
+    float: left;
+    overflow: hidden;
+}
+
+#devices div.opers {
+   float: right;
+   overflow: hidden;
+ }
+
+#devices a.edit {
+	display: block;
+    text-indent: -5000px;    
+    margin: 0; padding: 0;
+    height: 17px;
+    width: 16px;
+    background: url('/images/edit.jpg');
+}
+
+#devices a.trash {
+	display: block;
+    text-indent: -5000px;
+    margin: 0; padding: 0;
+    height: 14px;
+    width: 12px;
+    background: url('/images/trash.gif');
+}
+
+
+#devices span {
+    height: 70px;
+    width: 163px;
+    font-size: 150%;
+    background: #cabfbc;
+    padding: 5px;
+}
+
+td.title {
+    text-align: center;
+    height: 58px;
+    width: 100%;
+}
+
+#devices img {
+	height: 70px;
+}
+
+#logo {
+	position: absolute;
+	overflow: hidden;
+	top: 145px;
+	left: 68px;
+	width: 275px;
+	text-align: center;
+}
+
+#logo img {
+	height: 130px;
+}
+
+#picture {
+	position: absolute;
+	top: 320px;
+	left: 81px;
+	width: 540px;
+	overflow: hidden;
+	text-align: center;
+}
+
+#picture img {
+	height: 325px;
+}
+
+#info {
+	position: absolute;
+	top: 142px;
+	left: 388px;
+	height: 90px;
+	width: 580px;
+	overflow: auto;
+}
+
+#booth {
+	position: absolute;
+	top: 260px;
+	left: 470px;
+	color: #4e9fd7;
+}
+
+#hmi {
+	position: absolute;
+	top: 300px;
+	left: 677px;
+	width: 305px;
+	height: 368px;
+	overflow: auto;
+}
+
+#application iframe {
+    position: absolute;
+    top: 320px;
+    left: 67px;
+    width: 890px;
+    height: 346px;
+}
+
+.title {
+  padding-top: 0.5em;
+  font-size: 120%;
+  font-weight: bold;
+}
+
+.number {
+  text-align: right;
+}
+
+#hmi p {
+  padding: 0;
+  margin: 0;
+}
+
+#hmi table {
+  font-size: 80%;
+}
+
+form {
+    background: white;
+}

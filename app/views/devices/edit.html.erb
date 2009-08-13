@@ -16,6 +16,22 @@
     <%= f.text_area :description %>
   </p>
   <p>
+    <%= f.label :booth %><br />
+    <%= f.text_field :booth %>
+  </p>
+  <p>
+    <%= f.label :button_file %><br />
+    <%= f.file_field :button_file %>
+  </p>
+  <p>
+    <%= f.label :picture_file %><br />
+    <%= f.file_field :picture_file %>
+  </p>
+  <p>
+    <%= f.label :application %>
+    <%= f.check_box(:application) %>
+  </p>
+  <p>
     <%= f.submit 'Update' %>
   </p>
 <% end %>

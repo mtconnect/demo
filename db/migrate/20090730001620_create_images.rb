@@ -14,6 +14,8 @@ class CreateImages < ActiveRecord::Migration
       t.references :device
       t.timestamps
     end
+
+    add_index :images, :device_id
   end
 
   def self.down

@@ -11,6 +11,7 @@
 #  created_at  :datetime
 #  updated_at  :datetime
 #
+require 'net/http'
 
 class Device < ActiveRecord::Base
   has_one :button, :dependent => :destroy
@@ -27,7 +28,7 @@ class Device < ActiveRecord::Base
   def get_data
     dest = URI.parse(self.url)
     client = Net::HTTP.new(dest.host, dest.port)
-    response = client.get(dest.path)
+    response = client.get("#{dest.path}/current")
     if Net::HTTPOK === response
       document = REXML::Document.new(response.body)
       values = []
@@ -43,19 +44,11 @@ class Device < ActiveRecord::Base
     end
   end
 
-  def button=(button)
-    if !button.is_a?(Button)
-      self[:button] = Button.create(:uploaded_data => button)
-    else
-      self[:button] = button
-    end
+  def button_file=(button)
+    self.button = Button.new(:uploaded_data => button)
   end
 
-  def picture=(picture)
-    if !picture.is_a?(Picture)
-      self[:picture] = Picture.create(:uploaded_data => picture)
-    else
-      self[:picture] = picture
-    end
+  def picture_file=(picture)
+    self.picture = Picture.new(:uploaded_data => picture)
   end
 end

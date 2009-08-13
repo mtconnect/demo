@@ -1,5 +1,23 @@
-
 <table>
-  <tr><td>Position</td><td>1321</td></tr>
-  <tr><td>Position</td><td><%= Time.now %></td></tr>
+  <tr><td colspan="2" class="title">Controller</td></tr>
+  <% @control.each do |item| -%>
+    <tr><td id="name"><%= item.item %></td><td id="value"><%= item.value %></td></tr>
+  <% end -%>
+  <tr><td colspan="2" class="title">Spindle</td></tr>
+  <% @spindle.each do |item| -%>
+    <tr><td id="name"><%= item.item %></td>
+      <td id="value" class="number"><%= item.value %></td></tr>
+  <% end -%>
+  <tr><td colspan="2" class="title">Linear</td></tr>
+  <% @linear.each do |item| -%>
+    <tr><td id="name"><%= "#{item.item}[#{item.component_name}]" %></td>
+      <td id="value" class="number"><%= item.value %></td></tr>
+  <% end -%>
+  <% unless @rotary.empty? -%>
+    <tr><td colspan="2" class="title">Rotary</td></tr>
+    <% @rotary.each do |item| -%>
+      <tr><td id="name"><%= "#{item.item}[#{item.component_name}]" %></td>
+        <td id="value" class="number"><%= item.value %></td></tr>
+    <% end -%>
+  <% end -%>
 </table>

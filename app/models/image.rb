@@ -18,10 +18,5 @@
 #
 
 class Image < ActiveRecord::Base
-  has_attachment :storage => :file_system, :path_prefix => 'public/pictures',
-                 :content_type => :image
-  validates_as_attachment
-
   belongs_to :device
-  
 end

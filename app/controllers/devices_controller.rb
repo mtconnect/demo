@@ -2,7 +2,9 @@ class DevicesController < ApplicationController
   # GET /devices
   # GET /devices.xml
   def index
-    @devices = Device.all(:include => :button)
+    devices = Device.all(:include => :button)
+    
+    @applications, @devices = devices.partition { |d| d.application }
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,8 +15,11 @@ class DevicesController < ApplicationController
   # GET /devices/1
   # GET /devices/1.xml
   def show
-    @device = Device.find(params[:id])
-
+    @device = Device.find(params[:id], :include => [:button, :picture])
+    unless @device.application
+      get_device_data(@device)
+    end
+    
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @device }
@@ -23,10 +28,13 @@ class DevicesController < ApplicationController
 
   def update_hmi
     @device = Device.find(params[:id])
+    get_device_data(@device)
 
     respond_to do |format|
-      format.html { render :partial => 'hmi' }
-      format.xml  { render :xml => @device }
+      format.html
+      format.js do
+        render :json => { :content => render_to_string(:partial => 'hmi', :layout => false) }
+      end
     end
   end
 
@@ -90,5 +98,31 @@ class DevicesController < ApplicationController
       format.html { redirect_to(devices_url) }
       format.xml  { head :ok }
     end
+  end
+
+private
+  def get_device_data(device)
+    data = device.get_data
+
+    # Controller data
+    @control = data.select do |comp|
+      comp.component == "Controller" and
+        ['Block', 'ControllerMode', 'Execution'].include?(comp.item)
+    end
+
+    @spindle = data.select do |comp|
+      comp.component == 'Spindle' and comp.item == 'SpindleSpeed' and
+        comp.sub_type == 'ACTUAL'
+    end
+
+    @linear = data.select do |comp|
+      comp.component == 'Linear' and comp.item == 'Position' and
+        comp.sub_type == 'ACTUAL'
+    end.sort_by { |e| e.component_name }
+
+    @rotary = data.select do |comp|
+      comp.component == 'Rotary' and comp.item == 'Angle' and
+        comp.sub_type == 'ACTUAL'
+    end.sort_by { |e| e.component_name }
   end
 end

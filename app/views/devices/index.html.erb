@@ -1,24 +1,34 @@
-<h1>Listing devices</h1>
-
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Url</th>
-    <th>Description</th>
-  </tr>
-
-<% @devices.each do |device| %>
-  <tr>
-    <td><%=h device.name %></td>
-    <td><%=h device.url %></td>
-    <td><%=h device.description %></td>
-    <td><%= link_to 'Show', device %></td>
-    <td><%= link_to 'Edit', edit_device_path(device) %></td>
-    <td><%= link_to 'Destroy', device, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<%= link_to 'New device', new_device_path %>
+<div id="welcome">
+  <table id="devices">
+    <tr>
+      <% @devices.each_with_index do |device, i| %>
+        <td><%= link_to image_tag(device.button.public_filename), device, :class => 'item' %>
+	  <div class="opers">
+	    <%= link_to 'delete', device, :confirm => 'Are you sure?', :method => :delete,
+	    :class => 'trash', :title => 'delete' %><br/>
+	    <%= link_to 'edit', edit_device_url(device), :class => 'edit', :title => 'edit' %>
+	  </div>
+	</td>
+        <% if (i % 5) == 4 -%>
+    </tr><tr>
+        <% end -%>
+      <% end %>
+    </tr>
+    <tr><td class="title" colspan="5"><span>Applications<span></td></tr>
+    <tr>
+      <% @applications.each_with_index do |app, i| %>
+        <td><%= link_to image_tag(app.button.public_filename), app, :class => 'item' %>
+	  <div class="opers">
+	    <%= link_to 'delete', app, :confirm => 'Are you sure?', :method => :delete,
+	                                         :class => 'trash', :title => 'delete' %><br/>
+	    <%= link_to 'edit', edit_device_url(app), :class => 'edit', :title => 'edit' %>
+	  </div>
+	</td>
+        <% if (i % 5) == 4 -%>
+    </tr><tr>
+        <% end -%>
+      <% end %>
+    </tr>
+  </table>
+  <%= link_to 'New device', new_device_path, {:class => 'new'} %>
+</div>
