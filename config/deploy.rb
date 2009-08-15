@@ -7,7 +7,7 @@ set :repository,  "git://github.com/systeminsights/emo.git"
 set :deploy_to, "/home/deploy/emo"
 
 ssh_options[:port] = port
-ssh_options[:username] = username
+ssh_options[:username] = "deploy"
 
 # If you aren't using Subversion to manage your source code, specify
 # your SCM below:
