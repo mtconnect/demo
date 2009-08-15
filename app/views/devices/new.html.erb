@@ -1,36 +1,8 @@
 <h1>New device</h1>
 
 <% form_for(@device, :html => { :multipart => true }) do |f| %>
-  <%= f.error_messages %>
+  <%= render :partial => 'form', :locals => { :f => f } %>
 
-  <p>
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </p>
-  <p>
-    <%= f.label :url %><br />
-    <%= f.text_field :url %>
-  </p>
-  <p>
-    <%= f.label :description %><br />
-    <%= f.text_area :description %>
-  </p>
-  <p>
-    <%= f.label :booth %><br />
-    <%= f.text_field :booth %>
-  </p>
-  <p>
-    <%= f.label :logo_file %><br />
-    <%= f.file_field :button_file %>
-  </p>
-  <p>
-    <%= f.label :picture_file %><br />
-    <%= f.file_field :picture_file %>
-  </p>
-  <p>
-    <%= f.label :application %>
-    <%= f.check_box(:application) %>
-  </p>
   <p>
     <%= f.submit 'Create' %>
   </p>
