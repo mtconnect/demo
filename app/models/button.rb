@@ -19,6 +19,6 @@
 
 class Button < Image
   has_attachment :storage => :file_system, :path_prefix => 'public/pictures',
-                 :content_type => :image, :resize_to => [70, 160]
+                 :content_type => :image
   validates_as_attachment
 end
