@@ -1,33 +1,33 @@
 <div id="welcome">
   <table id="devices">
     <tr>
-      <% @devices.each_with_index do |device, i| %>
-        <td><%= link_to image_tag(device.button.public_filename), device, :class => 'item' %>
-	  <div class="opers">
-	    <%= link_to 'delete', device, :confirm => 'Are you sure?', :method => :delete,
-	    :class => 'trash', :title => 'delete' %><br/>
-	    <%= link_to 'edit', edit_device_url(device), :class => 'edit', :title => 'edit' %>
-	  </div>
+      <% j = 0; @devices.each_with_index do |device, i| j = i %>
+        <td class="item">
+	  <%= link_to image_tag('trash.gif'), device, :confirm => 'Are you sure?', :method => :delete,
+	       :title => 'delete', :class => 'oper' %>
+	  <%= link_to image_tag('edit.jpg'), edit_device_url(device), :title => 'edit', :class => 'oper' %>
+	  <%= link_to image_tag(device.button.public_filename), device, :class => 'dev_link' %>
 	</td>
         <% if (i % 5) == 4 -%>
     </tr><tr>
         <% end -%>
       <% end %>
+      <%= '<td class="item"/>' * (5 - j) %>
     </tr>
     <tr><td class="title" colspan="5"><span>Applications</span></td></tr>
     <tr>
-      <% @applications.each_with_index do |app, i| %>
-        <td><%= link_to image_tag(app.button.public_filename), app, :class => 'item' %>
-	  <div class="opers">
-	    <%= link_to 'delete', app, :confirm => 'Are you sure?', :method => :delete,
-	                                         :class => 'trash', :title => 'delete' %><br/>
-	    <%= link_to 'edit', edit_device_url(app), :class => 'edit', :title => 'edit' %>
-	  </div>
+      <% j = 0; @applications.each_with_index do |app, i| j = i %>
+        <td class="item">
+	  <%= link_to image_tag('trash.gif'), app, :confirm => 'Are you sure?', :method => :delete,
+	       :title => 'delete', :class => 'oper' %>
+	  <%= link_to image_tag('edit.jpg'), edit_device_url(app), :title => 'edit', :class => 'oper' %>
+	  <%= link_to image_tag(app.button.public_filename), app, :class => 'dev_link' %>
 	</td>
         <% if (i % 5) == 4 -%>
     </tr><tr>
         <% end -%>
       <% end %>
+      <%= '<td class="item"/>' * (5 - j) %>
     </tr>
   </table>
   <%= link_to 'New device', new_device_path, {:class => 'new'} %>

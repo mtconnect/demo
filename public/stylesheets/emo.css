@@ -1,10 +1,19 @@
-/* @override http://localhost:3000/stylesheets/emo.css?1250309524 */
+/* @override 
+	http://localhost:3000/stylesheets/emo.css?1250325609
+	http://localhost:3000/stylesheets/emo.css?1250326058
+	http://localhost:3000/stylesheets/emo.css?1250326752
+	http://localhost:3000/stylesheets/emo.css?1250326811
+*/
 
 body {
     background: black;
     padding: 0;
     margin: 0;
     font-family: "Lucida Grande", Lucida, Verdana, sans-serif;
+}
+
+div,p,tr,td {
+	padding: 0; margin: 0;
 }
 
 #return {
@@ -48,41 +57,40 @@ body {
 #devices {
     position: absolute;
     left: 60px;
-    top: 126px;
+    top: 106px;
 }
 
-#devices a.item {
+#devices tr {
+	overflow: hidden;
+    position: relative;
+}
+
+#devices td.item {
+    height: 101px;
+    width: 187px;
     text-align: center;
-    height: 111px;
-    width: 165px;
-    display: block;
-    float: left;
     overflow: hidden;
 }
 
-#devices div.opers {
-   float: right;
-   overflow: hidden;
- }
+#devices td.item a.dev_link {
+    display: block;
+    width: 167px;
+    height: 101px;
+    overflow: hidden;
+    position: relative;
+}
 
-#devices a.edit {
-	display: block;
-    text-indent: -5000px;    
-    margin: 0; padding: 0;
+#devices a.dev_link img {
+	height: 70px;
+}
+
+#devices a.oper {
+}
+
+#devices a.oper img{
     height: 17px;
     width: 16px;
-    background: url('/images/edit.jpg');
 }
-
-#devices a.trash {
-	display: block;
-    text-indent: -5000px;
-    margin: 0; padding: 0;
-    height: 14px;
-    width: 12px;
-    background: url('/images/trash.gif');
-}
-
 
 #devices span {
     font-size: 150%;
@@ -90,15 +98,11 @@ body {
     padding: 5px;
 }
 
-#devices td.title {
+#devices  td.title {
     text-align: center;
-	width: 1024px;
 	height: 105px;
 }
 
-#devices img {
-	height: 70px;
-}
 
 #logo {
 	position: absolute;
