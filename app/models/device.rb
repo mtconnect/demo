@@ -41,8 +41,11 @@ class Device < ActiveRecord::Base
       end
       values
     else
-      nil
+      []
     end
+
+  rescue
+    []
   end
 
   def button_file=(button)
