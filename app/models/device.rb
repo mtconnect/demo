@@ -12,6 +12,7 @@
 #  updated_at  :datetime
 #
 require 'net/http'
+require 'rexml/document'
 
 class Device < ActiveRecord::Base
   has_one :button, :dependent => :destroy
