@@ -14,7 +14,7 @@
         <% end -%>
       <% end %>
     </tr>
-    <tr><td class="title" colspan="5"><span>Applications<span></td></tr>
+    <tr><td class="title" colspan="5"><span>Applications</span></td></tr>
     <tr>
       <% @applications.each_with_index do |app, i| %>
         <td><%= link_to image_tag(app.button.public_filename), app, :class => 'item' %>

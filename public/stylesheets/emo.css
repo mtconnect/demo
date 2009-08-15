@@ -1,5 +1,4 @@
-/* @override http://localhost:3000/stylesheets/emo.css?1250200429 */
-
+/* @override http://localhost:3000/stylesheets/emo.css?1250309524 */
 
 body {
     background: black;
@@ -52,13 +51,9 @@ body {
     top: 126px;
 }
 
-#devices td {
+#devices a.item {
     text-align: center;
-    padding-bottom: 40px;
-}
-
-#devices td a.item {
-    height: 70px;
+    height: 111px;
     width: 165px;
     display: block;
     float: left;
@@ -90,17 +85,15 @@ body {
 
 
 #devices span {
-    height: 70px;
-    width: 163px;
     font-size: 150%;
     background: #cabfbc;
     padding: 5px;
 }
 
-td.title {
+#devices td.title {
     text-align: center;
-    height: 58px;
-    width: 100%;
+	width: 1024px;
+	height: 105px;
 }
 
 #devices img {
@@ -166,7 +159,7 @@ td.title {
     height: 346px;
 }
 
-.title {
+#hmi td.title {
   padding-top: 0.5em;
   font-size: 120%;
   font-weight: bold;
