@@ -1,6 +1,6 @@
 
 <div id="picture">
-  <% if @device.button -%>
+  <% if @device.picture -%>
     <%= image_tag(@device.picture.public_filename) %>
   <% else -%>
     <%= @device.name %>
