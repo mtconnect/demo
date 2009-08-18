@@ -7,7 +7,11 @@
 <a href="/" id="return">Return</a>
 
 <div id="logo">
-  <%= image_tag(@device.button.public_filename) %>
+  <% if @device.button -%>
+    <%= image_tag(@device.button.public_filename) %>
+  <% else -%>
+    <%= @device.name %>
+  <% end -%>
 </div>
 
 <div id="info">

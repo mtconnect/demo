@@ -1,6 +1,10 @@
 
 <div id="picture">
-  <%= image_tag(@device.picture.public_filename) %>
+  <% if @device.button -%>
+    <%= image_tag(@device.picture.public_filename) %>
+  <% else -%>
+    <%= @device.name %>
+  <% end -%>
 </div>
 
 <div id="hmi">
