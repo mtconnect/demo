@@ -163,9 +163,15 @@ div,p,tr,td {
     height: 346px;
 }
 
-#hmi td.title {
-  padding-top: 0.5em;
+#hmi tr.title td {
+  border-bottom: 2px solid black;
+  padding-top: 1em;
   font-size: 120%;
+  font-weight: bold;
+}
+
+#hmi td.label {
+  padding-right: 1em;
   font-weight: bold;
 }
 

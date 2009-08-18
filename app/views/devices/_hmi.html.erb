@@ -2,29 +2,29 @@
    <b>Unavailable, cannot contact: <%=h @device.url %></b>
 <% else -%>
 <table>
-  <tr><td colspan="2" class="title">Power</td></tr>
+  <tr class="title"><td colspan="2">Power</td></tr>
   <% @power.each do |item| -%>
-    <tr><td id="name"><%= item.item %></td><td id="value"><%= item.value %></td></tr>
+    <tr><td class="label"><%= item.item %></td><td id="value"><%= item.value %></td></tr>
   <% end -%>
-  <tr><td colspan="2" class="title">Controller</td></tr>
+  <tr class="title"><td colspan="2">Controller</td></tr>
   <% @control.each do |item| -%>
-    <tr><td id="name"><%= item.item %></td><td id="value"><%= item.value %></td></tr>
+    <tr><td class="label"><%= item.item %></td><td id="value"><%= item.value %></td></tr>
   <% end -%>
-  <tr><td colspan="2" class="title">Spindle</td></tr>
+  <tr class="title"><td>Spindle</td><td>Actual Speed</td></tr>
   <% @spindle.each do |item| -%>
-    <tr><td id="name"><%= item.item %></td>
-      <td id="value" class="number"><%= item.value %></td></tr>
+    <tr><td class="label"><%= item.component_name %></td>
+      <td id="value" class="number"><%= "%12.4f" % item.value.to_f %></td></tr>
   <% end -%>
-  <tr><td colspan="2" class="title">Linear</td></tr>
+  <tr class="title"><td>Linear</td><td>Actual Position</td></tr>
   <% @linear.each do |item| -%>
-    <tr><td id="name"><%= "#{item.item}[#{item.component_name}]" %></td>
-      <td id="value" class="number"><%= item.value %></td></tr>
+    <tr><td class="label"><%= item.component_name %></td>
+      <td id="value" class="number"><%= "%12.4f" % item.value.to_f %></td></tr>
   <% end -%>
   <% unless @rotary.empty? -%>
-    <tr><td colspan="2" class="title">Rotary</td></tr>
+    <tr><td class="title">Rotary</td><td>Actual Angle</td></tr>
     <% @rotary.each do |item| -%>
-      <tr><td id="name"><%= "#{item.item}[#{item.component_name}]" %></td>
-        <td id="value" class="number"><%= item.value %></td></tr>
+      <tr><td class="label"><%= item.component_name %></td>
+        <td id="value" class="number"><%= "%12.4f" % item.value.to_f %></td></tr>
     <% end -%>
   <% end -%>
 </table>

@@ -39,8 +39,12 @@ class Device < ActiveRecord::Base
       document.each_element('//Events/*|//Samples/*') do |value|
         value_attrs = value.attributes
         comp_attrs = value.parent.parent.attributes
-        values << DataValue.new(comp_attrs['component'], comp_attrs['name'], value.name, value_attrs['name'],
-                                value_attrs['subType'], value.text)
+        values << DataValue.new(comp_attrs['component'],
+                                comp_attrs['name'],
+                                value.name,
+                                value_attrs['name'],
+                                value_attrs['subType'],
+                                value.text)
       end
       values
     else
