@@ -2,6 +2,10 @@
    <b>Unavailable, cannot contact: <%=h @device.url %></b>
 <% else -%>
 <table>
+  <tr><td colspan="2" class="title">Power</td></tr>
+  <% @power.each do |item| -%>
+    <tr><td id="name"><%= item.item %></td><td id="value"><%= item.value %></td></tr>
+  <% end -%>
   <tr><td colspan="2" class="title">Controller</td></tr>
   <% @control.each do |item| -%>
     <tr><td id="name"><%= item.item %></td><td id="value"><%= item.value %></td></tr>

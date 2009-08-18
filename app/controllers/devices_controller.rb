@@ -104,6 +104,10 @@ private
   def get_device_data(device)
     data = device.get_data
 
+    @power = data.select do |comp|
+      comp.component == "Power" and comp.item == 'PowerStatus'
+    end
+
     # Controller data
     @control = data.select do |comp|
       comp.component == "Controller" and

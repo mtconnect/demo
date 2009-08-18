@@ -23,6 +23,9 @@ class Device < ActiveRecord::Base
     def initialize(component, component_name, item, name, sub_type, value)
       @component, @component_name, @item, @name, @sub_type, @value =
               component, component_name, item, name, sub_type, value
+      if @value.length > 20
+        @value = "#{@value[0..20]}..."
+      end
     end
   end
 
