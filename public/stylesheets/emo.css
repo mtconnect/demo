@@ -177,6 +177,7 @@ div,p,tr,td {
 
 .center {
   text-align: center;
+  padding: 0em 1em;
 }
 
 .number {
