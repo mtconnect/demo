@@ -1,9 +1,3 @@
-/* @override 
-	http://localhost:3000/stylesheets/emo.css?1250325609
-	http://localhost:3000/stylesheets/emo.css?1250326058
-	http://localhost:3000/stylesheets/emo.css?1250326752
-	http://localhost:3000/stylesheets/emo.css?1250326811
-*/
 
 body {
     background: black;
@@ -27,7 +21,7 @@ div,p,tr,td {
 }
 
 #welcome {
-    background: url(/images/welcome.png) no-repeat;
+    background: url(/images/devices.jpg) no-repeat;
     padding: 0;
     margin: 0;
     height: 755px;
@@ -54,25 +48,27 @@ div,p,tr,td {
     background: url(/images/application.jpg) no-repeat;
 }
 
-#devices {
+#container {
     position: absolute;
     left: 60px;
     top: 106px;
 }
 
-#devices tr {
+#container {
 	overflow: hidden;
     position: relative;
 }
 
-#devices td.item {
-    height: 101px;
-    width: 187px;
+#container div.item {
+	background: url(/images/active.png) no-repeat;
+    height: 110px;
+    width: 185px;
     text-align: center;
     overflow: hidden;
+    float: left;
 }
 
-#devices td.item a.dev_link {
+#container div.item a.dev_link {
     display: block;
     width: 167px;
     height: 101px;
@@ -80,29 +76,25 @@ div,p,tr,td {
     position: relative;
 }
 
-#devices a.dev_link img {
+#container a.dev_link img {
 	height: 70px;
 }
 
-#devices a.oper {
+#container a.oper {
 }
 
-#devices a.oper img{
+#container a.oper img{
     height: 17px;
     width: 16px;
 }
 
-#devices span {
-    font-size: 150%;
-    background: #cabfbc;
-    padding: 5px;
+#separator {
+	background: url(/images/applications.png) no-repeat;
+	clear: both;
+	text-indent: -5000px;
+	height: 70px;
+	width: 920px;
 }
-
-#devices  td.title {
-    text-align: center;
-	height: 105px;
-}
-
 
 #logo {
 	position: absolute;
