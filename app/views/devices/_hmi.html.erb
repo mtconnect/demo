@@ -10,18 +10,18 @@
   <% @control.each do |item| -%>
     <tr><td class="label"><%= item.item %></td><td id="value"><%= item.value %></td></tr>
   <% end -%>
-  <tr class="title"><td>Spindle</td><td>Actual Speed</td></tr>
+  <tr class="title"><td>Spindle</td><td class="center">Actual Speed</td></tr>
   <% @spindle.each do |item| -%>
     <tr><td class="label"><%= item.component_name %></td>
       <td id="value" class="number"><%= "%12.4f" % item.value.to_f %> rev/sec</td></tr>
   <% end -%>
-  <tr class="title"><td>Linear</td><td>Actual Position</td></tr>
+  <tr class="title"><td>Linear</td><td class="center">Actual Position</td></tr>
   <% @linear.each do |item| -%>
     <tr><td class="label"><%= item.component_name %></td>
       <td id="value" class="number"><%= "%12.4f" % item.value.to_f %> mm</td></tr>
   <% end -%>
   <% unless @rotary.empty? -%>
-    <tr><td class="title">Rotary</td><td>Actual Angle</td></tr>
+    <tr><td class="title">Rotary</td><td class="center">Actual Angle</td></tr>
     <% @rotary.each do |item| -%>
       <tr><td class="label"><%= item.component_name %></td>
         <td id="value" class="number"><%= "%12.4f" % item.value.to_f %>&deg;</td></tr>

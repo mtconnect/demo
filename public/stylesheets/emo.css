@@ -175,6 +175,10 @@ div,p,tr,td {
   font-weight: bold;
 }
 
+.center {
+  text-align: center;
+}
+
 .number {
   text-align: right;
 }
