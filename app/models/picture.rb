@@ -32,4 +32,5 @@ class Picture < Image
 
       resize_image(img, geo)
     end
+  end
 end
