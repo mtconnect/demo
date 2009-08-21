@@ -19,6 +19,17 @@
 
 class Picture < Image
   has_attachment :storage => :file_system, :path_prefix => 'public/pictures',
-                 :content_type => :image
+                 :content_type => :image, :processor => ImageScience
   validates_as_attachment
+
+  def resize_image_or_thumbnail!(img)
+    if parent_id.nil?
+      if self.width > 1.72 * self.height.to_f
+        geo = [545, ((545.0 / self.width.to_f) * self.height).to_i]
+      else
+        geo = 'x315'
+      end
+
+      resize_image(img, geo)
+    end
 end

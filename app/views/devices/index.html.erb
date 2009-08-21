@@ -6,7 +6,7 @@
                     :title => 'delete', :class => 'oper' %>
         <%= link_to image_tag('edit.jpg'), edit_device_url(device), :title => 'edit', :class => 'oper' %>
         <% if device.button -%>
-          <%= link_to image_tag(device.button.public_filename), device, :class => 'dev_link' %>
+          <%= link_to image_tag(device.button.public_filename(:thumb)), device, :class => 'dev_link' %>
         <% else -%>
 	      <%= link_to device.name, device, :class => 'dev_link' %>
         <% end -%>
@@ -19,7 +19,7 @@
                     :title => 'delete', :class => 'oper' %>
         <%= link_to image_tag('edit.jpg'), edit_device_url(app), :title => 'edit', :class => 'oper' %>
         <% if app.button -%>
-          <%= link_to image_tag(app.button.public_filename), app, :class => 'dev_link' %>
+          <%= link_to image_tag(app.button.public_filename(:thumb)), app, :class => 'dev_link' %>
         <% else -%>
 	      <%= link_to app.name, app, :class => 'dev_link' %>
         <% end -%>

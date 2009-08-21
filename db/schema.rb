@@ -12,10 +12,10 @@
 ActiveRecord::Schema.define(:version => 20090730001620) do
 
   create_table "devices", :force => true do |t|
-    t.string   "name",        :default => ""
-    t.string   "url",         :default => ""
-    t.string   "booth",       :default => ""
-    t.text     "description", :default => ""
+    t.string   "name"
+    t.string   "url"
+    t.string   "booth"
+    t.text     "description"
     t.boolean  "application"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -24,15 +24,15 @@ ActiveRecord::Schema.define(:version => 20090730001620) do
   add_index "devices", ["name"], :name => "index_devices_on_name"
 
   create_table "images", :force => true do |t|
-    t.integer  "size",         :default => 0
-    t.string   "content_type", :default => ""
-    t.string   "filename",     :default => ""
-    t.integer  "height",       :default => 0
-    t.integer  "width",        :default => 0
-    t.integer  "parent_id",    :default => 0
-    t.string   "thumbnail",    :default => ""
-    t.string   "type",         :default => ""
-    t.integer  "device_id",    :default => 0
+    t.integer  "size"
+    t.string   "content_type"
+    t.string   "filename"
+    t.integer  "height"
+    t.integer  "width"
+    t.integer  "parent_id"
+    t.string   "thumbnail"
+    t.string   "type"
+    t.integer  "device_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
