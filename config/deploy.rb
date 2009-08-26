@@ -38,5 +38,6 @@ after 'deploy:update_code', 'link_database_config'
 
 task :link_database_config, :roles => :app do
     run "ln -nfs #{shared_path}/secure/database.yml #{release_path}/config/database.yml && " +
-        "ln -nfs #{shared_path}/pictures #{release_path}/public/pictures"
+        "ln -nfs #{shared_path}/pictures #{release_path}/public/pictures && " +
+        "ln -nfs #{shared_path}/media #{release_path}/public/media"
 end
