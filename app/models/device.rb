@@ -13,6 +13,7 @@
 #
 require 'net/http'
 require 'rexml/document'
+require 'timeout'
 
 class Device < ActiveRecord::Base
   has_one :button, :dependent => :destroy
@@ -31,8 +32,12 @@ class Device < ActiveRecord::Base
 
   def get_data
     dest = URI.parse(self.url)
-    client = Net::HTTP.new(dest.host, dest.port)
-    response = client.get("#{dest.path}/current")
+    client = response = nil
+
+    Timeout::timeout(5) do 
+      client = Net::HTTP.new(dest.host, dest.port)
+      response = client.get("#{dest.path}/current")
+    end
     if Net::HTTPOK === response
       document = REXML::Document.new(response.body)
       values = []
