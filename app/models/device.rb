@@ -56,6 +56,9 @@ class Device < ActiveRecord::Base
       []
     end
 
+  rescue Timeout::Error
+    []
+    
   rescue
     []
   end
