@@ -7,23 +7,29 @@
     <tr><td class="label"><%= item.item %></td><td id="value"><%= item.value %></td></tr>
   <% end -%>
 </table>
+<% unless @control.empty? -%>
 <table>
   <tr class="title"><td colspan="2">Controller</td></tr>
   <% @control.each do |item| -%>
     <tr><td class="label"><%= item.item %></td><td id="value"><%= item.value %></td></tr>
   <% end -%>
 </table>
+<% end -%>
 <table>
+  <% unless @spindle.empty? -%>
   <tr class="title"><td>Spindle</td><td class="center">Actual Speed</td></tr>
   <% @spindle.each do |item| -%>
     <tr><td class="label"><%= item.component_name %></td>
       <td id="value" class="number"><%= "%12.4f" % item.value.to_f %> rev/sec</td></tr>
   <% end -%>
+  <% end -%>
 
+  <% unless @linear.empty? -%>
   <tr class="title"><td>Linear</td><td class="center">Actual Position</td></tr>
   <% @linear.each do |item| -%>
     <tr><td class="label"><%= item.component_name %></td>
       <td id="value" class="number"><%= "%12.4f" % item.value.to_f %> mm</td></tr>
+  <% end -%>
   <% end -%>
 
   <% unless @rotary.empty? -%>
