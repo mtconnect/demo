@@ -111,7 +111,7 @@ private
     # Controller data
     @control = data.select do |comp|
       comp.component == "Controller" and
-        ['Block', 'ControllerMode', 'Execution'].include?(comp.item)
+        ['Program', 'Block', 'ControllerMode', 'Execution'].include?(comp.item)
     end
 
     @spindle = data.select do |comp|
