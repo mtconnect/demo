@@ -60,7 +60,7 @@ class Device < ActiveRecord::Base
                               value_attrs['name'],
                               value_attrs['subType'],
                               value.text,
-                              value_attrs['code']
+                              value_attrs['code'],
                               value_attrs['state'])
         else
           values << DataValue.new(comp_attrs['component'],
