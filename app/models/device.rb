@@ -30,6 +30,15 @@ class Device < ActiveRecord::Base
     end
   end
 
+  class Alarm < DataValue
+    attr_reader :code, :state
+    def initialize(component, component_name, item, name, sub_type, value,
+                   code, state)
+      super(component, component_name, item, name, sub_type, value)
+      @code, @state = code, state
+    end
+  end
+
   def get_data
     dest = URI.parse(self.url)
     client = response = nil
@@ -44,12 +53,23 @@ class Device < ActiveRecord::Base
       document.each_element('//Events/*|//Samples/*') do |value|
         value_attrs = value.attributes
         comp_attrs = value.parent.parent.attributes
-        values << DataValue.new(comp_attrs['component'],
-                                comp_attrs['name'],
-                                value.name,
-                                value_attrs['name'],
-                                value_attrs['subType'],
-                                value.text)
+        if value.name == 'Alarm'
+          values << Alarm.new(comp_attrs['component'],
+                              comp_attrs['name'],
+                              value.name,
+                              value_attrs['name'],
+                              value_attrs['subType'],
+                              value.text,
+                              value_attrs['code']
+                              value_attrs['state'])
+        else
+          values << DataValue.new(comp_attrs['component'],
+                                  comp_attrs['name'],
+                                  value.name,
+                                  value_attrs['name'],
+                                  value_attrs['subType'],
+                                  value.text)
+        end
       end
       values
     else

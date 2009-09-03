@@ -119,6 +119,10 @@ private
         comp.sub_type == 'ACTUAL'
     end
 
+    @alarm = data.select do |comp|
+      comp.item == 'Alarm'
+    end
+
     @linear = data.select do |comp|
       comp.component == 'Linear' and comp.item == 'Position' and
         comp.sub_type == 'ACTUAL'

@@ -15,6 +15,14 @@
   <% end -%>
 </table>
 <% end -%>
+<% unless @alarm.empty? -%>
+<table>
+  <tr class="title"><td colspan="3">Alarms</td></tr>
+  <% @alarm.each do |item| -%>
+    <tr><td class="label"><%= item.value %></td><td id="value"><%= item.state %></td></tr>
+  <% end -%>
+</table>
+<% end -%>
 <table>
   <% unless @spindle.empty? -%>
   <tr class="title"><td>Spindle</td><td class="center">Actual Speed</td></tr>
