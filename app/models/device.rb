@@ -73,13 +73,16 @@ class Device < ActiveRecord::Base
       end
       values
     else
+      logger.error "Response from server #{response}"
       []
     end
 
   rescue Timeout::Error
+    logger.error "Request to #{self.url} timed out"
     []
     
   rescue
+    logger.error "Unexpected error: #{$!}"
     []
   end
 
