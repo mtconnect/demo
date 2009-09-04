@@ -1,4 +1,6 @@
 class DevicesController < ApplicationController
+  before_filter :authorize, :except => [:index, :show, :update_hmi]
+  
   # GET /devices
   # GET /devices.xml
   def index
@@ -133,4 +135,11 @@ private
         comp.sub_type == 'ACTUAL'
     end.sort_by { |e| e.component_name }
   end
+
+  def authorize
+    unless session[:authorized]
+      redirect_to devices_url
+    end
+  end
+  
 end

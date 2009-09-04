@@ -2,9 +2,13 @@
   <div id="container">
     <% j = 0; @devices.each_with_index do |device, i| j = i %>
       <div class="item">
+        <% if session[:authorized] -%>
         <%= link_to image_tag('trash.gif'), device, :confirm => 'Are you sure?', :method => :delete,
                     :title => 'delete', :class => 'oper' %>
         <%= link_to image_tag('edit.jpg'), edit_device_url(device), :title => 'edit', :class => 'oper' %>
+        <% else %>
+          <br/>
+        <% end -%>
         <% if device.button -%>
           <%= link_to image_tag(device.button.public_filename(:thumb)), device, :class => 'dev_link' %>
         <% else -%>
@@ -15,9 +19,13 @@
     <div id="separator">Applications</div>
     <% j = 0; @applications.each_with_index do |app, i| j = i %>
       <div class="item">
+        <% if session[:authorized] -%>
         <%= link_to image_tag('trash.gif'), app, :confirm => 'Are you sure?', :method => :delete,
                     :title => 'delete', :class => 'oper' %>
         <%= link_to image_tag('edit.jpg'), edit_device_url(app), :title => 'edit', :class => 'oper' %>
+        <% else %>
+          <br/>
+        <% end -%>
         <% if app.button -%>
           <%= link_to image_tag(app.button.public_filename(:thumb)), app, :class => 'dev_link' %>
         <% else -%>
@@ -26,5 +34,7 @@
 	  </div>
     <% end -%>
   </div>
+  <% if session[:authorized] -%>
   <%= link_to 'New app', new_device_path, {:class => 'new'} %>
+  <% end -%>
 </div>
