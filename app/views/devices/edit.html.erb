@@ -1,5 +1,5 @@
 
-<% form_for(@device) do |f| %>
+<% form_for(@device, :html => { :multipart => true }) do |f| %>
   <%= render :partial => 'form', :locals => { :f => f } %>
 
   <p>
