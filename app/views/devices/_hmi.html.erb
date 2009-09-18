@@ -41,7 +41,7 @@
   <% end -%>
 
   <% unless @rotary.empty? -%>
-    <tr><td class="title">Rotary</td><td class="center">Actual Angle</td></tr>
+    <tr class="title"><td>Rotary</td><td class="center">Actual Angle</td></tr>
     <% @rotary.each do |item| -%>
       <tr><td class="label"><%= item.component_name %></td>
         <td id="value" class="number"><%= "%12.4f" % item.value.to_f %>&deg;</td></tr>
