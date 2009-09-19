@@ -69,7 +69,7 @@ daemon:
     # application directory.
     # default PID file is tmp/pids/glassfish-<PID>.pid
     
-    pid: /home/deploy/emo/shared/log
+    # pid: /home/deploy/emo/shared/log
 
     # Like JRuby GlassFish gem runs on Java Virtual Machine. You can pass
     # JVM properties using 'jvm-options' property. The JVM options must be
