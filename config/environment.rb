@@ -40,9 +40,4 @@ Rails::Initializer.run do |config|
   # config.i18n.default_locale = :de
 end
 
-if RUBY_PLATFORM == 'java'
-  require 'image_voodoo_processor'
-  ImageScience = ImageVoodoo
-else
-  require 'image_science'
-end
+require 'image_science'
