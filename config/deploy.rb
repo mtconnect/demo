@@ -18,20 +18,6 @@ role :web, "173.45.224.194"
 role :db,  "173.45.224.194", :primary => true
 
 namespace :deploy do
-    desc "Override the default restart and execute mongel:restart task. See thin:restart"
-    task :restart, :roles => :app, :except => { :no_release => true } do
-      thin.restart
-    end
-
-    desc "Override the default start and execute thin:start"
-    task :start, :roles => :app do
-      thin.start
-    end
-
-    desc "Override the default stop and execute thin:stop"
-    task :stop, :roles => :app do
-      thin.stop
-    end
 end
 
 after 'deploy:update_code', 'link_database_config'
