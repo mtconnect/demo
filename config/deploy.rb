@@ -20,14 +20,17 @@ role :db,  "173.45.224.194", :primary => true
 namespace :deploy do
     desc "Override the default restart and execute mongel:restart task. See thin:restart"
     task :restart, :roles => :app, :except => { :no_release => true } do
+      glassfish.restart
     end
 
     desc "Override the default start and execute thin:start"
     task :start, :roles => :app do
+      glassfish.start
     end
 
     desc "Override the default stop and execute thin:stop"
     task :stop, :roles => :app do
+      glassfish.stop
     end
 end
 
