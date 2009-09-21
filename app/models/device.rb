@@ -45,6 +45,8 @@ class Device < ActiveRecord::Base
 
     Timeout::timeout(5) do 
       client = Net::HTTP.new(dest.host, dest.port)
+      client.open_timeout = 5
+      client.read_timeout = 5
       response = client.get("#{dest.path}/current")
     end
     if Net::HTTPOK === response
@@ -83,6 +85,7 @@ class Device < ActiveRecord::Base
     
   rescue
     logger.error "Unexpected error: #{$!}"
+    logger.error $!.backtrace.join("\n")
     []
   end
 
