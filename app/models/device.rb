@@ -53,8 +53,11 @@ class Device < ActiveRecord::Base
       document = REXML::Document.new(response.body)
       values = []
       document.each_element('//Events/*|//Samples/*') do |value|
+        next unless value.text
+
         value_attrs = value.attributes
         comp_attrs = value.parent.parent.attributes
+        
         if value.name == 'Alarm'
           values << Alarm.new(comp_attrs['component'],
                               comp_attrs['name'],
@@ -65,14 +68,12 @@ class Device < ActiveRecord::Base
                               value_attrs['code'],
                               value_attrs['state'])
         else
-          if value.text
-            values << DataValue.new(comp_attrs['component'],
-                                    comp_attrs['name'],
-                                    value.name,
-                                    value_attrs['name'],
-                                    value_attrs['subType'],
-                                    value.text)
-          end
+          values << DataValue.new(comp_attrs['component'],
+                                  comp_attrs['name'],
+                                  value.name,
+                                  value_attrs['name'],
+                                  value_attrs['subType'],
+                                  value.text)
         end
       end
       values
