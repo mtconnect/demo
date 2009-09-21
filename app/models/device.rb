@@ -85,7 +85,7 @@ class Device < ActiveRecord::Base
     logger.error "Request to #{self.url} timed out"
     []
 
-  rescue Errno::ECONNREFUSED
+  rescue Errno::ECONNREFUSED, SocketError
     logger.error "Could not connect to #{self.url}"
     []
     
