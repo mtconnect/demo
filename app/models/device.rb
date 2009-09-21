@@ -84,6 +84,10 @@ class Device < ActiveRecord::Base
   rescue Timeout::Error
     logger.error "Request to #{self.url} timed out"
     []
+
+  rescue Errno::ECONNREFUSED
+    logger.error "Could not connect to #{self.url}"
+    []
     
   rescue
     logger.error "Unexpected error: #{$!}"
