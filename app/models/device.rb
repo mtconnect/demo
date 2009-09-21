@@ -90,7 +90,7 @@ class Device < ActiveRecord::Base
     []
     
   rescue
-    logger.error "Unexpected error: #{$!}"
+    logger.error "#{$!.class}: Unexpected error: #{$!}"
     logger.error $!.backtrace.join("\n")
     []
   end
