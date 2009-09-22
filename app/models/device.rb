@@ -43,7 +43,7 @@ class Device < ActiveRecord::Base
     dest = URI.parse(self.url)
     client = response = nil
     
-    Timeout::timeout(5) do 
+    Timeout::timeout(7) do 
       Net::HTTP.start(dest.host, dest.port) do |client|
         response = client.get("#{dest.path}/current")
       end
