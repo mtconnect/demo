@@ -44,8 +44,9 @@ class Device < ActiveRecord::Base
     client = response = nil
     
     Timeout::timeout(5) do 
-      client = Net::HTTP.new(dest.host, dest.port)
-      response = client.get("#{dest.path}/current")
+      Net::HTTP.start(dest.host, dest.port) do |client|
+        response = client.get("#{dest.path}/current")
+      end
     end    
     
     if Net::HTTPOK === response
