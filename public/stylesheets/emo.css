@@ -1,3 +1,9 @@
+/* @override 
+	http://localhost:3000/stylesheets/emo.css?1252016882
+	http://localhost:3000/stylesheets/emo.css?1253598482
+	http://localhost:3000/stylesheets/emo.css?1253598686
+*/
+
 body {
     background: black;
     padding: 0;
@@ -187,4 +193,10 @@ div,p,tr,td,table {
 
 form {
     background: white;
+}
+
+div#powered-by {
+	position: absolute;
+	top: 700px;
+	left: 870px;
 }

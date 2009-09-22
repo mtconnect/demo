@@ -47,7 +47,7 @@ class Device < ActiveRecord::Base
       client = Net::HTTP.new(dest.host, dest.port)
       response = client.get("#{dest.path}/current")
     end
-    thread.join(5)
+    thread.join(7)
     raise Timeout::Error, 'Response timed out' unless response
     
     if Net::HTTPOK === response

@@ -4,13 +4,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
   <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
-  <title>Devices: <%= controller.action_name %></title>
+  <title>MTConnect at EMO - Milan Italy</title>
   <%= stylesheet_link_tag 'emo' %>
   <%= javascript_include_tag ['prototype', 'application', 'effects', 'controls', 'hmi'] %>
 </head>
 <body>
 
   <%= yield %>
-
+  <div id="powered-by">
+    <%= image_tag('powered_by.png') %>
+  </div>
 </body>
 </html>
