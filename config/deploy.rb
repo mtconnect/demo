@@ -1,5 +1,5 @@
 set :application, "emo"
-set :repository,  "git://github.com/mtconnect/demo.git"
+set :repository,  "git://github.com/systeminsights/emo.git"
 
 # If you aren't deploying to /u/apps/#{application} on the target
 # servers (which is the default), you can specify the actual location
@@ -13,24 +13,24 @@ ssh_options[:username] = "deploy"
 # your SCM below:
 set :scm, :git
 
-role :app, "173.45.224.194"
-role :web, "173.45.224.194"
-role :db,  "173.45.224.194", :primary => true
+role :app, "emo.mtconnect.org"
+role :web, "emo.mtconnect.org"
+role :db,  "emo.mtconnect.org", :primary => true
 
 namespace :deploy do
     desc "Override the default restart and execute mongel:restart task. See thin:restart"
     task :restart, :roles => :app, :except => { :no_release => true } do
-      glassfish.restart
+      thin.restart
     end
 
     desc "Override the default start and execute thin:start"
     task :start, :roles => :app do
-      glassfish.start
+      thin.start
     end
 
     desc "Override the default stop and execute thin:stop"
     task :stop, :roles => :app do
-      glassfish.stop
+      thin.stop
     end
 end
 
@@ -38,7 +38,6 @@ after 'deploy:update_code', 'link_database_config'
 
 task :link_database_config, :roles => :app do
     run "ln -nfs #{shared_path}/secure/database.yml #{release_path}/config/database.yml && " +
-        "ln -nfs #{shared_path}/secure/auth #{release_path}/config/auth && " +
         "ln -nfs #{shared_path}/pictures #{release_path}/public/pictures && " +
         "ln -nfs #{shared_path}/media #{release_path}/public/media"
 end
