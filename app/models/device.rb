@@ -42,13 +42,14 @@ class Device < ActiveRecord::Base
   def get_data
     dest = URI.parse(self.url)
     client = response = nil
-
-    Timeout::timeout(5) do 
+    
+    thread = Thread.new do
       client = Net::HTTP.new(dest.host, dest.port)
-      client.open_timeout = 5
-      client.read_timeout = 5
       response = client.get("#{dest.path}/current")
     end
+    thread.join(5)
+    raise Timeout::Error, 'Response timed out' unless response
+    
     if Net::HTTPOK === response
       document = REXML::Document.new(response.body)
       values = []
