@@ -1,8 +1,4 @@
-/* @override 
-	http://localhost:3000/stylesheets/emo.css?1252016882
-	http://localhost:3000/stylesheets/emo.css?1253598482
-	http://localhost:3000/stylesheets/emo.css?1253598686
-*/
+/* @override http://emo.mtconnect.org/stylesheets/emo.css?1253649854 */
 
 body {
     background: black;
@@ -56,7 +52,7 @@ div,p,tr,td,table {
 #container {
     position: absolute;
     left: 60px;
-    top: 108px;
+    top: 112px;
     height: 560px;
     width: 925px;
 }
@@ -76,7 +72,7 @@ div,p,tr,td,table {
 
 #container div.item a.dev_link {
     display: block;
-    width: 167px;
+    width: 177px;
     height: 101px;
     overflow: hidden;
     position: relative;

@@ -17,8 +17,6 @@
 #  updated_at   :datetime
 #
 
-require 'image_science'
-
 class Button < Image
   has_attachment :storage => :file_system, :path_prefix => 'public/pictures',
                  :content_type => :image, :processor => ImageScience,

@@ -1,5 +1,8 @@
 class DevicesController < ApplicationController
   before_filter :authorize, :except => [:index, :show, :update_hmi]
+
+  caches_action :index, :unless => Proc.new { |c| c.session[:authorized] }
+  cache_sweeper :device_sweeper, :only => [:create, :update, :destroy]
   
   # GET /devices
   # GET /devices.xml
