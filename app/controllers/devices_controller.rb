@@ -107,33 +107,33 @@ class DevicesController < ApplicationController
 
 private
   def get_device_data(device)
-    data = device.get_data
+    @data = device.get_data
 
-    @power = data.select do |comp|
+    @power = @data.select do |comp|
       comp.component == "Power" and comp.item == 'PowerStatus'
     end
 
     # Controller data
-    @control = data.select do |comp|
+    @control = @data.select do |comp|
       comp.component == "Controller" and
         ['Program', 'Block', 'ControllerMode', 'Execution'].include?(comp.item)
     end
 
-    @spindle = data.select do |comp|
+    @spindle = @data.select do |comp|
       comp.component == 'Spindle' and comp.item == 'SpindleSpeed' and
         comp.sub_type == 'ACTUAL'
     end
 
-    @alarm = data.select do |comp|
+    @alarm = @data.select do |comp|
       comp.item == 'Alarm'
     end
 
-    @linear = data.select do |comp|
+    @linear = @data.select do |comp|
       comp.component == 'Linear' and comp.item == 'Position' and
         comp.sub_type == 'ACTUAL'
     end.sort_by { |e| e.component_name }
 
-    @rotary = data.select do |comp|
+    @rotary = @data.select do |comp|
       comp.component == 'Rotary' and comp.item == 'Angle' and
         comp.sub_type == 'ACTUAL'
     end.sort_by { |e| e.component_name }

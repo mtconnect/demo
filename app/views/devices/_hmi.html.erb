@@ -1,5 +1,9 @@
 <% if @power.empty? -%>
-   <b>Unavailable, cannot contact: <%=h @device.url %></b>
+  <% if @data.empty? -%>
+    <b>Unavailable, cannot contact: <%=h @device.url %></b>
+  <% else -%>
+     <b>Could not find Power status in results, please make sure you have a value for the PowerStatus (in the results from the <i>current</i>)</b>
+  <% end -%>
 <% else -%>
 <table>
   <tr class="title"><td colspan="2">Power</td></tr>
