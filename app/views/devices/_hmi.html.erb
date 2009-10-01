@@ -32,7 +32,7 @@
   <tr class="title"><td>Spindle</td><td class="center">Actual Speed</td></tr>
   <% @spindle.each do |item| -%>
     <tr><td class="label"><%= item.component_name %></td>
-      <td id="value" class="number"><%= "%12.4f" % item.value.to_f %> rev/sec</td></tr>
+      <td id="value" class="number"><%= "%12.4f" % item.value.to_f %> rev/min</td></tr>
   <% end -%>
   <% end -%>
 

@@ -17,6 +17,7 @@ class DeviceSweeper < ActionController::Caching::Sweeper
 private
   def expire_cache_for(device)
     expire_action('/')
+    expire_action('/devices')
     expire_action(url_for(device))
   end
 end
