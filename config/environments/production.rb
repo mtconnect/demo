@@ -16,7 +16,7 @@ config.log_level = :warn
 # config.logger = SyslogLogger.new
 
 # Use a different cache store in production
-config.cache_store = :file_store
+config.cache_store = :file_store, '/home/deploy/emo/shared/cache'
 
 # Enable serving of images, stylesheets, and javascripts from an asset server
 # config.action_controller.asset_host = "http://assets.example.com"
