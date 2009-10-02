@@ -1,4 +1,7 @@
-/* @override http://emo.mtconnect.org/stylesheets/emo.css?1254517438 */
+/* @override 
+	http://emo.mtconnect.org/stylesheets/emo.css?1254517438
+	http://emo.mtconnect.org/stylesheets/emo.css?1254519008
+*/
 
 body {
     background: black;
@@ -138,6 +141,7 @@ div,p,tr,td,table {
 	top: 260px;
 	left: 470px;
 	color: #006ca1;
+	font-size: 18px;
 }
 
 #hmi {
