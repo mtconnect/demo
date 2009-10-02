@@ -1,7 +1,3 @@
-/* @override 
-	http://emo.mtconnect.org/stylesheets/emo.css?1254517438
-	http://emo.mtconnect.org/stylesheets/emo.css?1254519008
-*/
 
 body {
     background: black;
@@ -12,6 +8,10 @@ body {
 
 div,p,tr,td,table {
 	padding: 0; margin: 0;
+}
+
+a {
+	outline: none;
 }
 
 #return {
