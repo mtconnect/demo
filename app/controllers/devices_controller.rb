@@ -7,7 +7,7 @@ class DevicesController < ApplicationController
   # GET /devices
   # GET /devices.xml
   def index
-    devices = Device.all(:include => :button)
+    devices = Device.all(:include => :button, :order => :name)
     
     @applications, @devices = devices.partition { |d| d.application }
 
