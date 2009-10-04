@@ -1,16 +1,15 @@
-<% if @power.empty? -%>
-  <% if @data.empty? -%>
-    <b>Unavailable, cannot contact: <%=h @device.url %></b>
-  <% else -%>
-     <b>Could not find Power status in results, please make sure you have a value for the PowerStatus (in the results from the <i>current</i>)</b>
-  <% end -%>
-<% else -%>
+<% if @data.empty? -%>
+  <b><em>The <%= @device.name %> machine is currently unavailable.
+       Please try again in a few minutes.</em></b>
+<% end -%>
+<% unless @power.empty? -%>
 <table>
   <tr class="title"><td colspan="2">Power</td></tr>
   <% @power.each do |item| -%>
     <tr><td class="label"><%= item.item %></td><td id="value"><%= item.value %></td></tr>
   <% end -%>
 </table>
+<% end -%>
 <% unless @control.empty? -%>
 <table>
   <tr class="title"><td colspan="2">Controller</td></tr>
