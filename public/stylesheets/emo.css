@@ -139,7 +139,7 @@ a {
 #booth {
 	position: absolute;
 	top: 260px;
-	left: 470px;
+	left: 383px;
 	color: #006ca1;
 	font-size: 18px;
 }
@@ -155,10 +155,10 @@ a {
 
 #application iframe {
     position: absolute;
-    top: 320px;
-    left: 67px;
-    width: 890px;
-    height: 346px;
+    top: 310px;
+    left: 75px;
+    width: 895px;
+    height: 350px;
 }
 
 #hmi tr.title td {
@@ -195,8 +195,19 @@ form {
     background: white;
 }
 
-div#powered-by {
+a#powered-by {
 	position: absolute;
 	top: 700px;
 	left: 870px;
+    display: block;
+}
+
+a#mtconnect {
+    text-indent: -5000px;    
+    display: block;
+    position: absolute;
+    top: 22px;
+    left: 114px;
+    height: 58px;
+    width: 290px;
 }

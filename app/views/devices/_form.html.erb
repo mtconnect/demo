@@ -1,10 +1,11 @@
   <%= f.error_messages %>
 
-  <p>
+  <div>
     <p>Machine Tools are on Screen 1 and Applications are on Screen 2</p>
     <p style="margin-left: 10px"><%= f.radio_button :application, false %>Screen 1 (Machine Tool/Device)</p>
     <p style="margin-left: 10px"><%= f.radio_button :application, true %>Screen 2 (Web Application)</p>
-  </p><br/>
+  </div>
+  <br/>
 
   <p>
     <%= f.label :name, 'Company Name' %><br />
@@ -19,7 +20,7 @@
     <%= f.text_area :description %>
   </p>
   <p>
-    <%= f.label :booth %><br />
+    <%= f.label :booth, "Location" %><br />
     <%= f.text_field :booth %>
   </p>
   <p>

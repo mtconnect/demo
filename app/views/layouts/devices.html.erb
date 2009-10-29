@@ -4,15 +4,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
   <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
-  <title>MTConnect at EMO - Milan Italy</title>
+  <title>Offical MTConnect Demo</title>
   <%= stylesheet_link_tag 'emo' %>
   <%= javascript_include_tag ['prototype', 'application', 'effects', 'controls', 'hmi'] %>
 </head>
 <body>
+  <a id="mtconnect" href="http://www.mtconnect.org">MTConnect.org</a>
 
   <%= yield %>
-  <div id="powered-by">
-    <%= image_tag('powered_by.png') %>
-  </div>
+  <a id="powered-by" href="http://www.systeminsights.com"><%= image_tag('powered_by.png') %></a>
 </body>
 </html>
