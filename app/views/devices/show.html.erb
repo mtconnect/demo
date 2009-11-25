@@ -3,7 +3,7 @@
 <% else -%>
   <div id="device">
 <% end -%>
-
+<% if !@device.enabled %><span class="disabled">Disabled</span><% end -%>
 <a href="/" id="return">Return</a>
 
 <div id="logo">

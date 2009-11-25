@@ -211,3 +211,10 @@ a#mtconnect {
     height: 58px;
     width: 290px;
 }
+
+.disabled {
+    font-size: 200%;
+    font-weight: bold;
+    color: red;
+    background-color: white;
+}
