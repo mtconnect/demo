@@ -7,7 +7,11 @@ class DevicesController < ApplicationController
   # GET /devices
   # GET /devices.xml
   def index
-    devices = Device.all(:include => :button, :order => :name)
+    if authorized?
+      devices = Device.all(:include => :button, :order => :name)
+    else
+      devices = Device.active.all(:include => :button, :order => :name)
+    end
     
     @applications, @devices = devices.partition { |d| d.application }
 
@@ -137,6 +141,10 @@ private
       comp.component == 'Rotary' and comp.item == 'Angle' and
         comp.sub_type == 'ACTUAL'
     end.sort_by { |e| e.component_name }
+  end
+  
+  def authorized?
+    session[:authorized]
   end
 
   def authorize

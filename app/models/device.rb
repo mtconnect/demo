@@ -18,6 +18,7 @@ require 'timeout'
 class Device < ActiveRecord::Base
   has_one :button, :dependent => :destroy
   has_one :picture, :dependent => :destroy
+  named_scope :active, :conditions => { :enabled => true }
 
   class DataValue
     attr_reader :component, :component_name, :item, :name, :sub_type, :value

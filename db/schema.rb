@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090730001620) do
+ActiveRecord::Schema.define(:version => 20091125061336) do
 
   create_table "devices", :force => true do |t|
     t.string   "name"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(:version => 20090730001620) do
     t.boolean  "application"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "enabled",     :default => true
   end
 
   add_index "devices", ["name"], :name => "index_devices_on_name"

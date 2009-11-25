@@ -3,9 +3,12 @@
     <% j = 0; @devices.each_with_index do |device, i| j = i %>
       <div class="item">
         <% if session[:authorized] -%>
-        <%= link_to image_tag('trash.gif'), device, :confirm => 'Are you sure?', :method => :delete,
+          <%= link_to image_tag('trash.gif'), device, :confirm => 'Are you sure?', :method => :delete,
                     :title => 'delete', :class => 'oper' %>
-        <%= link_to image_tag('edit.jpg'), edit_device_url(device), :title => 'edit', :class => 'oper' %>
+          <%= link_to image_tag('edit.jpg'), edit_device_url(device), :title => 'edit', :class => 'oper' %>
+          <% if !device.enabled -%>
+            <span style="color: red; background-color: white"><strong>X</strong></span>
+          <% end -%>
         <% else %>
           <br/>
         <% end -%>
