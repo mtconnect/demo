@@ -1,0 +1,53 @@
+%h2
+  Utilization is the percentage of time this device has been executing a part program 
+  compared to its scheduled operational time. The data below is a single day’s cycles 
+  using MTConnect's real-time event notification capability.
+.utilization-row
+  %br
+  .left-utilization
+    %h3 Execution
+    #activity
+      =render "activity"
+  .right-utilization
+    %h3 Daily Utilization
+    #daily.graph{'data-id' => dom_id(@device)}
+.utilization-text
+  %br
+  .left-utilization
+    %h4
+      Active indicates the machine is currently Actively Executing a 
+      program with the Controller in Automatic Mode.
+      In MTConnect this is represented by Execution ACTIVE and 
+      ControllerMode AUTOMATIC.
+  .right-utilization
+    %h4
+      Amount of time this device has been executing a part program as a percentage 
+      of the total time it is scheduled to be operating today between #{@device.on_time}:00 
+      and #{@device.off_time}:00.
+.utilization-row
+  %br
+  .left-utilization.alarms
+    %h3 Faults and Warnings
+    #alarms
+      =render "alarms"
+  .right-utilization
+    %h3 Hourly Utilization
+    #hourly.graph{'data-id' => dom_id(@device)}
+.utilization-text
+  %br
+  .left-utilization
+    %h4
+      List of reported MTConnect conditions that were either Faults (indicated in red) or Warnings. 
+      Table shows the time the fault occurred, time it was cleared, native code 
+      on the machine, and description of the fault
+  .right-utilization
+    %h4
+      Hourly utilization shows the time the machine was active during each one
+      hour period starting with the beginning of the scheduled day and stopping 
+      at the end of the scheduled day.
+    
+%h5
+  %br
+  The source is available at 
+  %a{:href => "http://github.com/systeminsights/mtc_imts_demo", :target => "_blank"}
+    http://github.com/systeminsights/mtc_imts_demo

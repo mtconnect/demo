@@ -1,0 +1,99 @@
+- if @device.has_cutting_tool? and cutting_tool = @device.cutting_tool_doc.elements['//CuttingTool'] 
+  .utilization-row
+    .left-utilization
+      %h3 Cutting Tool Identity Information
+      %h4 The header of the cutting tool document provides indentity information about the cutting tool instance including its unique name, type, and manufactures.
+      %br
+      %table
+        %tr
+          %th{:colspan => "2"} Identity
+        - cutting_tool.attributes.sort.each do |k, v|
+          %tr
+            %td.name= k
+            %td.value= v
+        - if desc = cutting_tool.elements['.//Description']
+          %tr
+            %th{:colspan => "2"} Description
+          - desc.text.split(/[\t]+/).each do |l|
+            %tr
+              %td{:colspan => "2"}= l
+        
+     
+      %h3 Cutting Tool Life Cycle
+      %h4 MTConnect focuses primarily on the cutting tool's life on the shop floor that includes various process parameters about how the tool will be used.
+      %br
+      
+      %table    
+        - cutting_tool.elements['.//CuttingToolLifeCycle'].each do |ele|
+          - next if ele.is_a? REXML::Text
+          - case ele.name            
+          - when 'CutterStatus'
+            %tr
+              %th{:colspan => "2"}= "Cutter Status"
+            - ele.each_element('.//Status') do |status|
+              %tr
+                %td{:colspan => "2"}= status.text
+            
+          - when 'Measurements', 'CuttingItems'
+          - when 'CuttingItem'
+            %tr
+              %th{:colspan => "2"}= ele.name
+            - ele.attributes.sort.each do |k, v|
+              %tr
+                %td.name= k
+                %td.value= v
+            
+          - else
+            %tr
+              %th{:colspan => "2"}= ele.name
+            - ele.attributes.sort.each do |k, v|
+              %tr
+                %td.name= k
+                %td.value= v
+            %tr
+              %td.name Current Value
+              %td.value= ele.text 
+
+      %h3 Cutting Items    
+      %h4 Each individual part of the cutting tool can be measured separately. This allow us to represent each insert in a shell mill or each step in a step drill.
+      %br
+
+      %table
+        - cutting_tool.each_element('.//CuttingToolLifeCycle/CuttingItems/*') do |ele|
+          %tr
+            %th{:colspan => "2"} Identity
+          - ele.attributes.sort.each do |k, v|
+            %tr
+              %td.name= k
+              %td.value= v
+
+          - ele.each_element('./Measurements/*') do |ele|
+            - next if ele.is_a? REXML::Text
+            %tr
+              %th{:colspan => "2"}= ele.name
+            - ele.attributes.sort.each do |k, v|
+              %tr
+                %td.name= k
+                %td.value= v
+            %tr
+              %td.name Current Value
+              %td.value= ele.text         
+
+    .right-utilization
+      %h3 Measurements
+      %h4 The cutting tool geometries can be called out as a list of measurements. The measurements include a nominal value, optional tolerances, and a measured actual value. 
+      %br
+      
+      %table    
+        - cutting_tool.each_element('.//CuttingToolLifeCycle/Measurements/*') do |ele|
+          - next if ele.is_a? REXML::Text
+          %tr
+            %th{:colspan => "2"}= ele.name
+          - ele.attributes.sort.each do |k, v|
+            %tr
+              %td.name= k
+              %td.value= v
+          %tr
+            %td.name Current Value
+            %td.value= ele.text         
+  

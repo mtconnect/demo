@@ -1,0 +1,62 @@
+=form_for @device, :html => {:class => "well", :multipart => true} do |f|
+  %h3 Edit device
+
+  - if @device.errors.any?
+    .alert.alert-error
+      %h4.alert-heading Error(s)!
+      - @device.errors.full_messages.each do |msg|
+        %p= msg 
+
+  =f.label :name, 'Company Name'
+  =f.text_field :name
+
+  =f.label :url, 'The URL for the MTConnect Agent. Should include Device name as well. For example: http://example.com/MyDevice'
+  =f.text_field :url
+
+  .form-line
+    =f.label :enabled
+    =f.check_box :enabled
+
+  =f.label :description
+  =f.text_area :description
+
+  =f.label :location
+  = 'Booth Location or Company Locations <City>, <State/Country>'
+  %br
+  =f.text_field :location
+  
+  =f.label :logo
+  The logo will be resized to fit 270 wide by 130 high for the large image. A smaller
+  image will be generated for the main page off of the same image.  The image will 
+  be scaled and the aspect ratio preserved.
+  .form-line
+    -if @device.logo?
+      =image_tag @device.logo.button.url
+    -else
+      No Logo
+    =f.label :logo, 'Replace Logo: '
+    =f.file_field :logo
+    =f.hidden_field :logo_cache
+
+    
+  =f.label :picture
+  The logo will be resized to fit 545 wide by 420 high. The image will 
+  be scaled and the aspect ratio preserved.
+  %br  
+  .form-line
+    -if @device.picture?
+      =image_tag @device.picture.display.url 
+    -else
+      No Picture
+    =f.label :picture, 'Replace Picture: '
+    =f.file_field :picture
+    =f.hidden_field :picture_cache
+
+  =f.label :on_time, 'Hour production starts (CDT for show)'
+  =f.select :on_time, [6, 7, 8, 9, 10, 11, 12]
+
+  =f.label :off_time, 'Hour production stops (CDT for show)'
+  =f.select :off_time, [15, 16, 17, 18, 19, 20, 21, 22, 23]
+
+  %br
+  =f.submit

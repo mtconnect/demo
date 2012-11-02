@@ -1,0 +1,1 @@
+screen -A -S collector rails r -e production collector/daemon.rb

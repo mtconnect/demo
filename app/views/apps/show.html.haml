@@ -1,0 +1,30 @@
+#app
+  #device-heading
+    #device-logo
+      -if @app.logo?
+        =image_tag =image_tag @app.logo.button.url
+      -else
+        =@app.name
+    #device-description
+      %p.text
+        =raw @app.description
+      %p.location
+        %span=@app.location
+  .border
+
+  %br
+  -if @app.has_app_pictures?
+    #app_pictures
+      #appCarousel.carousel.slide.well
+        / Carousel items
+        .carousel-inner
+          -@app.app_pictures.each do |app_picture|
+            .item
+              =image_tag app_picture.file.slide.url
+        / Carousel nav
+        %a.carousel-control.left{"data-slide" => "prev", :href => "#appCarousel"} ‹
+        %a.carousel-control.right{"data-slide" => "next", :href => "#appCarousel"} › 
+        
+      .border      
+    
+  %iframe{:src=> @app.url, :width => 1000, :height => 840}

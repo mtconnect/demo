@@ -1,0 +1,52 @@
+=nested_form_for @app, :html => {:class => "well", :multipart => true} do |f|
+  %h3 New Application 
+  %p Add the details of the application 
+
+  - if @app.errors.any?
+    .alert.alert-error
+      %h4.alert-heading Error(s)!
+      - @app.errors.full_messages.each do |msg|
+        %p= msg
+
+  =f.label :name, 'Company Name'
+  =f.text_field :name
+
+  =f.label :url, 'URL for web site hosting you application. Will be displayed in separate frame.'
+  =f.text_field :url
+
+  .form-line
+    =f.label :enabled
+    =f.check_box :enabled
+
+  =f.label :description
+  =f.text_area :description
+
+  =f.label :location
+  = 'Booth Location or Company Locations <City>, <State/Country>'
+  %br
+  =f.text_field :location
+
+  =f.label :logo
+  The logo will be resized to fit 270 wide by 130 high for the large image. A smaller
+  image will be generated for the main page off of the same image.  The image will 
+  be scaled and the aspect ratio preserved.
+  %br
+  =f.file_field :logo
+
+  %h3 Pictures
+  Pictures will be resized to a maximum of 960 wide by 400 high. If necessary they will be 
+  scaled and the aspect ratio will be preserved. 
+  %br
+  =f.fields_for :app_pictures do |app_picture_fields|
+    =app_picture_fields.label :file, "Replace Picture: "
+    =app_picture_fields.file_field :file
+    %br
+    =app_picture_fields.link_to_remove "Remove Picture"
+    %br.clear
+
+  %br
+  =f.link_to_add "Add picture", :app_pictures
+  %br
+  %br
+  
+  =f.submit 

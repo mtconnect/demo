@@ -1,0 +1,2 @@
+module AppPicturesHelper
+end

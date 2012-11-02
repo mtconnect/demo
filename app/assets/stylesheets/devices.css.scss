@@ -1,0 +1,249 @@
+// Place all the styles related to the devices controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#device, #app {
+  margin: 20px 20px 40px 20px;
+  background-color:#fff;
+  -moz-border-radius:5px;
+  -webkit-border-radius:5px;
+  border-radius:5px;
+  padding: 0px;
+  width: 1000px;
+  padding: 20px;
+  
+  #device-heading {
+      margin-left:10px; 
+      padding:30px 0 20px 20px;
+      overflow: hidden;
+      
+      #device-logo {
+          width: 300px;
+          float:left;          
+      }
+      
+      #device-description {
+          width:660px; float: right;
+          font-weight:bold; font-size:17px;
+          color:#383838; text-align:justify;
+                    
+          p.location {
+              margin-top: 20px;
+              
+              span {
+                  background: #E8E8E8; 
+                  padding:10px;
+                  text-align:center; 
+                  font-weight:bold;                  
+              }
+          }
+      }
+  }
+  
+  #device-detail {
+    height: 420px;
+    overflow: hidden;
+  }
+
+  .button {
+    padding-left:10px;
+  }
+
+  .border {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    border: 1px solid #E0E0E0;
+    clear: both;
+  }
+
+  img.machine {
+    width: 540px;
+  }
+}
+
+p.text {
+    height: 130px;
+    margin-bottom: 15px;
+    padding-right: 20px;
+    overflow: auto;
+}
+ 
+#device, #device-tabs {
+  .hmi, .tools {
+      margin-left: 30px;
+      padding: 0px;
+      width: 350px;
+      height: 400px;
+      float: right;
+      overflow: auto;
+      
+      table {
+          margin-bottom: 12px;
+          width: 100%;
+      }
+      
+      th {
+          background:#DFDFDF;
+          font-size:15px; font-weight:bold;
+          text-align: left;
+          color:#303030;
+          padding: 4px;
+          -webkit-border-radius: 3px;
+      }
+
+      td {
+          font:11px verdana; font-weight: bold;
+          padding-left: 4px;
+      }
+      
+      
+      td.name {
+          width: 100px;
+      }
+
+      td.sub-type {
+          width: 50px;
+          
+      }
+      td.value {
+          text-align: right;
+          color: #777;
+      }      
+  }
+  
+  .tools {
+      height: 850px;
+      width: 960px;
+      
+      td.name {
+        width: 200px;
+      }
+  }
+  
+  .device_state {
+    text-align: center;
+  }
+  
+  .device-picture {
+      width:540px; 
+      overflow:hidden;
+      float:left;
+  }
+}
+
+form {
+  input, textarea { 
+    width: 500px;
+  }
+}
+
+.fai {
+  iframe {
+    width: 990px;
+    height: 770px;
+  }
+}
+
+#device-tabs {
+    margin: 75px 20px 20px 20px;
+    background-color:#fff;
+    -moz-border-radius:5px;
+    -webkit-border-radius:5px;
+    border-radius:5px;
+    padding: 0px;
+    width: 1000px;
+    padding: 20px;
+    height: 890px;
+    
+    h2 {
+      font-size: 120%;
+      line-height: 150%;
+      margin-bottom: 20px;      
+    }
+    
+    ul.nav-tabs {
+      margin-top: -52px;
+      border: black 1px;
+      margin-left: 30px;
+      
+      li {
+        width: 237px;
+        margin-left: -30px;
+        
+        a {
+          background: url(/assets/devices_text_bg.png) no-repeat;
+          background-position: center;
+          font-size: 120%;
+          font-weight: bold;
+          color: white;
+          text-align: center;
+          border: none;
+          letter-spacing: 1px;
+          margin: 0;
+          padding: 7px 0px;
+          opacity: 0.6;
+          z-index: 10;
+        }        
+      }
+      
+      li.active a {
+        opacity: 1.0;
+        z-index: 1000;
+      }       
+    }
+    
+    tr.fault td {
+        background: #F2DEDE;
+    }
+
+    .left-utilization {
+        float: left;
+        width: 48%;      
+    }
+    
+    .right-utilization {
+        float: right;
+        width: 48%;
+        margin-left: 10px;
+    }
+
+    .utilization-row {
+        overflow: hidden;
+        
+        h3 {
+          font-size: 120%;
+          text-align: center;
+          color: #3E576F;
+          margin-bottom: 2em;
+        }
+    }
+
+    .utilization-text {
+        clear: both;
+        overflow: hidden;
+        margin-bottom: 15px;
+    }
+
+    .tab-content {
+      overflow: auto;
+    }
+    
+    #activity {
+      width: 50%;
+      margin: 40px auto 0px auto;
+      
+      .alert {
+        padding: 8px 35px 8px 35px;
+      }
+    }
+    
+    #alarms {
+      margin: 20px auto;
+      height: 310px;
+      overflow: auto;
+      width: 100%;      
+    }    
+}
+
+#new_device {
+}

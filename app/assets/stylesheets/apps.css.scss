@@ -1,0 +1,60 @@
+// Place all the styles related to the apps controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+#appCarousel {
+  min-height: 400px;
+}
+
+.carousel .item > img {
+  margin: 0 auto;
+}
+
+#app #device-heading #device-description p.text {
+  height: 200px;
+}
+
+form.well { 
+  h3 {
+    margin-top: 12px;
+  }
+  
+  label {
+    font-weight: bold;
+  }
+ 
+  div.fields {
+    margin-bottom: 12px;
+    overflow: hidden;
+  
+    img {
+      display: block;
+      float: left;
+      height: 100px;
+      margin-right: 20px;
+    }
+  
+    br.clear {
+      clear: both;
+    }
+  
+    input {
+      width: 200px;
+    }
+  
+    label {
+      display: inline;
+    }
+  }
+}
+
+form.well div.form-line {
+  margin: 6px 0px;
+  img {
+    height: 25px;
+  }
+  
+  label {
+    display: inline;
+  }  
+}
+

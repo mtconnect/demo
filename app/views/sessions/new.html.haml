@@ -1,0 +1,12 @@
+.well
+  -if flash[:error]
+    .alert.alert-error
+      =flash[:error]
+  =form_for "session", :url => "/login", :html => {:method => :post} do |f|
+    %h3 Enter your password
+
+    =f.label :password
+    =f.password_field :password
+
+    %br
+    =f.submit :login

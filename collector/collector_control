@@ -1,0 +1,22 @@
+#!/usr/bin/env ruby
+require 'rubygems'
+require 'daemons'
+
+ENV['RAILS_ENV'] = 'production'
+
+APP_PATH = File.expand_path('../../config/application',  __FILE__)
+require File.expand_path('../../config/boot',  __FILE__)
+
+options = {
+  :app_name   => 'collector',
+  :dir_mode   => :script,
+  :dir        => '/home/deploy/mtc_imts_demo/shared/pids',
+  :multiple   => false,
+  :ontop      => false,
+  :mode       => :load,
+  :backtrace  => true,
+  :log_dir    => '/home/deploy/mtc_imts_demo/shared/log',
+  :monitor    => true
+}
+
+Daemons.run(File.join(File.dirname(__FILE__), 'daemon.rb'), options)

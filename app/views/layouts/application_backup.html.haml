@@ -1,0 +1,26 @@
+!!!
+%html{:lang => "en", "xml:lang" => "en", :xmlns => "http://www.w3.org/1999/xhtml"}
+  %head
+    %meta{:content => "text/html;charset=UTF-8", "http-equiv" => "content-type"}/
+    %title Official MTConnect Demo
+    = stylesheet_link_tag    "application", :media => "all"
+    = javascript_include_tag "application" 
+  %body
+    .container
+      #header
+        %ul
+          %li
+            %h1
+              %img.logo{:alt => "MTConnect", :src => "/images/MTConnect_logo.png"}/
+          %li
+            %h1
+              %img#header_device_logo.page_title{:alt => "Device", :src => "/images/text_device.png", :style => "display :none"}/
+          %li
+            %h1
+              %img#header_app_logo.page_title{:alt => "Application", :src => "/images/text_application.png", :style => "display :none"}/
+        %a#return{:href => "#", :onclick => "back_to_index();return false;", :style => "display :none"}
+          %img.back_button{:src => "/images/btn_back.png"}/
+      #content
+        = yield
+      #loading{:style => "display :none"}
+        Loading 

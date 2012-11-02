@@ -1,0 +1,59 @@
+=nested_form_for @app, :html => {:class => "well", :multipart => true} do |f|
+  %h3 Edit Application 
+
+  - if @app.errors.any?
+    .alert.alert-error
+      %h4.alert-heading Error(s)!
+      - @app.errors.full_messages.each do |msg|
+        %p= msg
+
+  =f.label :name, 'Company Name'
+  =f.text_field :name
+
+  =f.label :url, 'URL for your application'
+  Your app will be displayed in separate frame.
+  %br
+  =f.text_field :url
+
+  .form-line
+    =f.label :enabled
+    =f.check_box :enabled
+
+  =f.label :description
+  =f.text_area :description
+
+  =f.label :location
+  = 'Booth Location or Company Locations <City>, <State/Country>'
+  %br
+  =f.text_field :location
+
+  
+  =f.label :logo
+  The logo will be resized to fit 270 wide by 130 high for the large image. A smaller
+  image will be generated for the main page off of the same image.  The image will 
+  be scaled and the aspect ratio preserved.
+  .form-line
+    =image_tag @app.logo.button.url
+    =f.label :logo, "Replace Logo: "
+    =f.file_field :logo
+
+    %h3 Pictures
+    Pictures will be resized to a maximum of 960 wide by 400 high. If necessary they will be 
+    scaled and the aspect ratio will be preserved. The images will be displayed one at a time 
+    in a slide show.
+    %br
+  
+  =f.fields_for :app_pictures do |app_picture_fields|
+    =raw "<img src='#{app_picture_fields.object.file.slide.url}' />"
+    %br
+    =app_picture_fields.label :file, "Replace Picture: "
+    =app_picture_fields.file_field :file
+    %br
+    =app_picture_fields.link_to_remove "Remove Picture"
+    %br.clear
+
+  %br
+  =f.link_to_add "Add picture", :app_pictures
+  %br
+  %br
+  =f.submit

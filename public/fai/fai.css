@@ -1,0 +1,40 @@
+table {
+	width: 970px;
+	border-spacing: 0px;
+	border-collapse: collapse;
+	background-color: white;
+}
+
+table th {
+	border-width: thin;
+	padding: 2px;
+	border-style: inset;
+	border-color: gray;
+	background-color: white;
+}
+table td {
+	padding: 2px;
+	background-color: white;
+	border: 1px solid black;
+}
+
+label.cell {
+  display: block;
+  font-weight: bold;
+}
+
+label.check {
+  font-weight: bold;
+  width: 125px;
+  display: block; 
+  float: left; 
+}
+
+table td.centered {
+  text-align: center;
+  font-weight: bold;
+}
+
+table td.bold {
+  font-weight: bold;  
+}

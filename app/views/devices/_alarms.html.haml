@@ -1,0 +1,14 @@
+%table.table.table-striped.table-bordered.table-condensed
+  %thead
+    %tr
+      %th Time
+      %th Cleared
+      %th Code
+      %th Description
+  %tbody
+    -@device.alarms.sort_by(&:time).reverse.each do |alarm|
+      %tr{:class=>alarm.severity_class}
+        %td=alarm.formatted_time
+        %td=alarm.cleared_time
+        %td=alarm.code
+        %td=alarm.description

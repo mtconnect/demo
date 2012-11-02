@@ -1,22 +1,21 @@
 class SessionsController < ApplicationController
-  layout 'devices'
+  @@password = File.read("#{Rails.root}/config/auth.txt").strip
 
-  PASSWORD = File.read("#{RAILS_ROOT}/config/auth").strip
-
-  def index
+  def new 
   end
 
   def create
-    respond_to do |format|
-      if params[:password] == PASSWORD
-        logger.info "Logged in"
-        session[:authorized] = true
-        format.html {  redirect_to devices_url }
-      else
-        logger.error "Invalid password #{params[:passord]}"
-        flash[:error] = 'Incorrect password'
-        format.html {  redirect_to sessions_url }
-      end
+    if params[:session][:password] == @@password
+      session[:authorized] = true
+      redirect_to devices_path
+    else
+      flash[:error] = 'Incorrect password'
+      redirect_to login_path
     end
+  end
+
+  def destroy
+    session[:authorized] = false
+    redirect_to devices_path
   end
 end

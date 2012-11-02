@@ -1,0 +1,73 @@
+h1.select_Manufacturer {	text-align: center;	padding: 40px; } 
+
+#header {
+    background:url(/assets/head_bg.png);
+    height: 150px;
+} 
+.section {
+    margin:0 20px 60px;
+}
+.section_content {
+    overflow:hidden;
+    background:url(/assets/section_bg.png) repeat-y;
+}
+
+.section_content ul {
+    list-style: none;
+    padding:20px 10px 20px 30px;
+}
+.device_head, .applications_head {
+    padding: 11px 50px 0;
+    text-align: center;
+    margin-left: 20px;
+}
+
+img.disabled {
+  position: absolute;
+  right: 4px;
+  top: -32px;
+}
+
+.operations {
+  position: relative;
+}
+
+.device_head {
+    background:url(/assets/applications_text_bg.png) no-repeat;
+}
+
+.applications_head {
+    background:url(/assets/applications_text_bg.png) no-repeat;
+}
+
+.section_content ul {
+    list-style: none;
+    padding:40px 10px 40px 10px;
+}
+
+.section_content ul li {
+    /*background:url(../assets/logo_bg.png) no-repeat scroll 50% 50%;*/
+    float:left;
+    margin:0 18px 30px 0;
+    /*width:180px; height:120px;*/
+}
+
+.manufacturer_logo {
+    height:120px;
+    width:180px;
+}
+
+.manufacturer_logo {
+    background:url(/assets/logo_bg.png) no-repeat scroll 50% 50%;
+    display:table-cell;
+    text-align:center;
+    vertical-align:middle;
+}  
+
+.section_top, .section_bottom {
+    display: block;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    line-height: 0;
+}

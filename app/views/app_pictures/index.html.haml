@@ -1,0 +1,5 @@
+.row
+  -@app_pictures.each do |app_picture|
+    .span2.well
+      =image_tag app_picture.file.slide.url, :size => "100x100"
+      =link_to "Delete", app_app_picture_path(app_picture.app, app_picture), :method => :delete, :confirm => "Are you sure?"
