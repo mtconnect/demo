@@ -19,8 +19,9 @@
         / Carousel items
         .carousel-inner
           -@app.app_pictures.each do |app_picture|
-            .item
-              =image_tag app_picture.file.slide.url
+            -unless app_picture.file.nil?
+              .item
+                =image_tag app_picture.file.slide.url
         / Carousel nav
         %a.carousel-control.left{"data-slide" => "prev", :href => "#appCarousel"} ‹
         %a.carousel-control.right{"data-slide" => "next", :href => "#appCarousel"} › 
