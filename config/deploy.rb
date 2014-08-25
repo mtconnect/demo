@@ -1,11 +1,11 @@
-server "imts.mtconnect.org", :web, :app, :db, primary: true
+server "demo.mtconnect.org", :web, :app, :db, primary: true
 set :application, "mtc_imts_demo"
 set :user, "deploy"
 set :deploy_to, "/home/#{user}/#{application}"
 set :deploy_via, :remote_cache
 
 set :scm, "git"
-set :repository, "git@github.com:systeminsights/mtc_imts_demo.git"
+set :repository, "git@github.com:mtconnect/demo.git"
 set :branch, "master"
 
 #require "rvm/capistrano"

@@ -17,6 +17,8 @@
 #vim shit
 *.swp
 *.swo
+*.tgz
+*.gz
 
 #carrierwave files
 public/uploads/
@@ -30,3 +32,7 @@ public/images/
 
 #database config
 database.yml
+
+server/authorized_keys
+
+shared

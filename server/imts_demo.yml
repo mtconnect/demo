@@ -1,0 +1,15 @@
+---
+chdir: /home/deploy/mtc_imts_demo/current
+environment: production
+timeout: 30
+log: /home/deploy/mtc_imts_demo/shared/log/thin.log
+pid: /home/deploy/mtc_imts_demo/shared/pids/thin.pid
+max_conns: 1024
+max_persistent_conns: 512
+require: []
+wait: 30
+servers: 4
+socket: /tmp/thin.sock
+daemonize: true
+user: deploy
+group: deploy
