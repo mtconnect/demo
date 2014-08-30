@@ -5,14 +5,24 @@ h1.select_Manufacturer {	text-align: center;	padding: 40px; }
     height: 150px;
 } 
 .section {
-    margin:0 20px 60px;
+    margin:0 20px 60px;    
 }
+
+h1.tab {
+  margin-bottom: 0px;
+}
+
 .section_content {
     overflow:hidden;
     background:url(/assets/section_bg.png) repeat-y;
 }
 
-.section_content ul {
+div.container {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+div.section_content ul {
     list-style: none;
     padding:20px 10px 20px 30px;
 }

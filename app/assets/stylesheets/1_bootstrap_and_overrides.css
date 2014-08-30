@@ -1,0 +1,34 @@
+/*
+  =require twitter-bootstrap-static/bootstrap
+
+  Use Font Awesome icons (default)
+  To use Glyphicons sprites instead of Font Awesome, replace with "require twitter-bootstrap-static/sprites"
+  =require twitter-bootstrap-static/fontawesome
+  */
+  
+body { 
+  background-color:#0B3565;
+}
+
+.content {
+  min-height:990px;
+}
+
+.container {
+  width: 1080px;
+  height: 1910px;
+  background:url("/assets/MTConnect_Vertical.jpg") no-repeat center center;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	overflow: hidden;
+}
+
+.span3andThreeQuaters {
+  width: 350px;
+}
+
+div.container-editing {
+  height: 100%;
+}

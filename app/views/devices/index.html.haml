@@ -6,14 +6,14 @@
 
 
 #devices.section
-  %h1
+  %h1.tab
     =image_tag("text_devices.png", :alt => "Devices", :class => 'device_head')
   .section_top
     =image_tag("section_top.png")
   .section_content
     -if session[:authorized]
       .row
-        .span2.offset9
+        .col-md-2.col-md-offset-9
           =link_to "New Device", new_device_path, :class => "btn btn-primary"
     %ul
       -@devices.each do |device|
@@ -35,14 +35,14 @@
 
 
 #apps.section
-  %h1
+  %h1.tab
     =image_tag('text_applications.png', :alt => "Devices", :class => 'applications_head')
   .section_top
     =image_tag("section_top.png")
   .section_content
     -if session[:authorized]
       .row
-        .span2.offset9
+        .col-md-2.col-md-offset-9
           =link_to "New Application", new_app_path, :class => "btn btn-primary"
     %ul
       -@apps.each do |app|

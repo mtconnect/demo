@@ -5,8 +5,9 @@
   =form_for "session", :url => "/login", :html => {:method => :post} do |f|
     %h3 Enter your password
 
-    =f.label :password
-    =f.password_field :password
+    .form-group
+      =f.label :password
+      =f.password_field :password, class: 'form-control'
 
     %br
     =f.submit :login

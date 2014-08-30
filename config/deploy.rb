@@ -1,5 +1,5 @@
 server "demo.mtconnect.org", :web, :app, :db, primary: true
-set :application, "mtc_imts_demo"
+set :application, "imtsdemo"
 set :user, "deploy"
 set :deploy_to, "/home/#{user}/#{application}"
 set :deploy_via, :remote_cache

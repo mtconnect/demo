@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.6'
+gem 'rails', '~> 4.1.5'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -11,8 +11,9 @@ gem 'mysql2'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
+  gem 'sass-rails'
+  gem 'coffee-rails', '~> 4.0'
+  gem 'less-rails'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby
@@ -21,7 +22,7 @@ group :assets do
 end
 
 gem 'jquery-rails'
-gem 'therubyracer', :platforms => :ruby 
+gem 'therubyracer', '~> 0.12.1', :platforms => :ruby 
 gem 'twitter-bootstrap-rails'
 gem 'haml-rails'
 gem 'carrierwave'
@@ -32,6 +33,7 @@ gem "highcharts-rails"
 gem "whenever"
 gem "underscore-rails"
 gem "daemons"
+gem "protected_attributes"
 
 gem 'capistrano'
 gem 'rvm-capistrano'

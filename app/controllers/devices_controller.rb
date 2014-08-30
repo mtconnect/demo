@@ -3,8 +3,8 @@ class DevicesController < ApplicationController
 
   def index
     if session[:authorized]    
-      @devices = Device.all(:order => 'name') 
-      @apps = App.all(:order => 'name') 
+      @devices = Device.all.order('name') 
+      @apps = App.all.order('name') 
     else
       @devices = Device.active.order('name') 
       @apps = App.active.order('name') 

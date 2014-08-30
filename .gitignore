@@ -21,10 +21,12 @@
 *.gz
 
 #carrierwave files
-public/uploads/
-public/inspections/
-public/assets/
-public/images/
+public/uploads
+public/inspections
+public/assets
+public/images
+public/system
+
 
 #rvm shit
 .rvmrc
@@ -32,7 +34,11 @@ public/images/
 
 #database config
 database.yml
+config/auth.txt
 
 server/authorized_keys
 
 shared
+
+gems
+.ruby-version

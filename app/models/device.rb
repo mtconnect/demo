@@ -269,13 +269,13 @@ class Device < ActiveRecord::Base
             asset_id = element.text
             if asset_type == 'CuttingTool'
               self.update_attributes(:cutting_tool => asset_id)
-            elsif asset_type == 'InspectionResults'
+            elsif asset_type == 'Quality'
               Thread.new { 
                 generate_inspection(asset_id) 
                 self.update_attributes(:inspection_results => asset_id)
                 ActiveRecord::Base.connection_pool.release_connection                
               }
-            elsif asset_type == 'InspectionPlans'
+            elsif asset_type == 'Quality'
               Thread.new { 
                 generate_inspection(asset_id) 
                 self.update_attributes(:inspection_plans => asset_id)
@@ -326,7 +326,7 @@ class Device < ActiveRecord::Base
   end
 
   def state_css_class
-    in_cycle ? "alert-success" : "alert-error"
+    in_cycle ? "alert-success" : "alert-danger"
   end
 
   def elapsed_daily_utilization
