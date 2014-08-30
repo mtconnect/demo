@@ -150,15 +150,14 @@ form {
     -moz-border-radius:5px;
     -webkit-border-radius:5px;
     border-radius:5px;
-    padding: 0px;
     width: 1040px;
     padding: 20px;
-    height: 890px;
+    height: 930px;
     
     h2 {
       font-size: 120%;
       line-height: 150%;
-      margin-bottom: 20px;      
+      margin-bottom: 15px;      
     }
     
     ul.nav-tabs {
@@ -214,7 +213,7 @@ form {
           font-size: 120%;
           text-align: center;
           color: #3E576F;
-          margin-bottom: 2em;
+          margin-bottom: 1em;
         }
     }
 
@@ -243,6 +242,13 @@ form {
       overflow: auto;
       width: 100%;      
     }    
+    
+    h4 {
+      font-size: 14px;
+      line-height: 18px;
+      margin-top: 5px;
+      margin-top: 5px;
+    }
 }
 
 #new_device {
