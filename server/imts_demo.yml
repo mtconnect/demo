@@ -1,9 +1,9 @@
 ---
-chdir: /home/deploy/mtc_imts_demo/current
+chdir: /home/deploy/imtsdemo/current
 environment: production
 timeout: 30
-log: /home/deploy/mtc_imts_demo/shared/log/thin.log
-pid: /home/deploy/mtc_imts_demo/shared/pids/thin.pid
+log: /home/deploy/imtsdemo/shared/log/thin.log
+pid: /home/deploy/imtsdemo/shared/pids/thin.pid
 max_conns: 1024
 max_persistent_conns: 512
 require: []
