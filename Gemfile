@@ -35,6 +35,10 @@ gem "underscore-rails"
 gem "daemons"
 gem "protected_attributes"
 
+group :development, :test do
+  gem "rspec-rails", "~> 3.0"
+end
+
 gem 'capistrano', '~> 3.2'
 gem 'capistrano-rbenv', '~> 2.0'
 gem 'capistrano-bundler', '~> 1.1'
