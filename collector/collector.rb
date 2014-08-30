@@ -42,7 +42,9 @@ class Collector
     raise
     
   ensure
-    client.finish rescue puts "#{device.id} - client finish failed: #{$!}"
+    if client
+      client.finish rescue puts "#{device.id} - client finish failed: #{$!}"
+    end
   end
 
   def pull_thread(device)

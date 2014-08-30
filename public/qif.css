@@ -38,3 +38,7 @@ table td.centered {
 table td.bold {
   font-weight: bold;  
 }
+
+table td.measurement {
+  background-color: #dff0d8;
+}

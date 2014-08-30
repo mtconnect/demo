@@ -180,6 +180,8 @@ class QualityGenerator
     header = ['Characteristic ID', 'LTL', 'Target', 'UTL']
     columns = []
     stat_headings = []
+    measures = []
+    measures_header = []
 
     first = true
     @studies.each do |study|      
@@ -202,15 +204,19 @@ class QualityGenerator
         column << study.stats[h]
       end
 
+      columns << column
+
       header << 'Part Measurements' if first
       column << ''
-      
+
+      column = []
       study.groups.each do |group|
-        header << group.id if first
+        measures_header << group.id if first
         column << group.actuals.first.value
-      end      
-      
-      columns << column
+      end
+
+      measures << column
+
       first = false
     end        
     
@@ -223,25 +229,33 @@ class QualityGenerator
     row.add_element('th').add_text(@product.parts.first.name)
     (columns.size - 2).times { row.add_element('th') }
     
-    rows.shift(2).each do |row|
-      tr = thead.add_element 'tr'
-      row.each do |e|
-        tr.add_element('th').add_text(e)
-      end
-    end    
-    
+    row = rows.shift
+    tr = thead.add_element 'tr'
+    row.each do |e|
+      tr.add_element('th').add_text(e)
+    end
     
     tbody = table.add_element('tbody')
     rows.each do |row|
       tr = tbody.add_element 'tr'
-      cls = {'class' => 'bold'}
-      row.each do |e|        
-        
+      cls = { 'class' => 'bold' }
+      row.each do |e|
         tr.add_element('td', cls).add_text(e)
         cls = nil
       end
     end
-    
+
+    measures.unshift measures_header
+    rows = measures.first.zip(*measures[1..-1])
+    rows.each do |row|
+      tr = tbody.add_element 'tr'
+      cls = { 'class' => 'bold' }
+      row.each do |e|
+        tr.add_element('td', cls).add_text(e)
+        cls = { 'class' => 'measurement'}
+      end
+    end
+
     File.open(file, 'w') { |f| f.write html.to_s }
   end
 
