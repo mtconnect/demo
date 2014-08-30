@@ -26,7 +26,7 @@ set :deploy_to, '/home/deploy/imtsdemo'
 set :linked_files, %w{config/database.yml config/auth.txt}
 
 # Default value for linked_dirs is []
-set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle
+set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets vendor/bundle
     public/system public/uploads public/quality}
 
 # Default value for default_env is {}
@@ -42,16 +42,20 @@ set :rbenv_prefix, "RBENV_ROOT=#{fetch(:rbenv_path)} RBENV_VERSION=#{fetch(:rben
 set :rbenv_map_bins, %w{rake gem bundle ruby rails}
 set :rbenv_roles, :all
 
+# Bundler
+set :bundle_binstubs, -> { shared_path.join('binstubs') }
+
 namespace :deploy do
 
   desc 'Restart application'
 
-  [:start :stop :restart].each do |command|
+  [:start, :stop, :restart].each do |command|
     task command do
       on roles(:app), in: :sequence, wait: 5 do
-        execute :bundle, "exec thin -C /etc/thin/imts_demo.yml #{command}"
-        # Your restart mechanism here, for example:
-        # execute :touch, release_path.join('tmp/restart.txt')
+        within curent_path do
+          execute :bundle, "exec thin -C /etc/thin/imts_demo.yml #{command}"
+          execute "pkill -f collector"
+        end
       end
     end
   end
