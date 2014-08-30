@@ -52,7 +52,7 @@ namespace :deploy do
   [:start, :stop, :restart].each do |command|
     task command do
       on roles(:app), in: :sequence, wait: 5 do
-        within curent_path do
+        within current_path do
           execute :bundle, "exec thin -C /etc/thin/imts_demo.yml #{command}"
           execute "pkill -f collector"
         end
