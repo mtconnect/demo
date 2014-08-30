@@ -8,7 +8,7 @@ set :repo_url, 'git@github.com:mtconnect/demo.git'
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
 
 # Default deploy_to directory is /var/www/my_app
-set :deploy_to, '/home/deploy/imtsdemo_new'
+set :deploy_to, '/home/deploy/imtsdemo'
 
 # Default value for :scm is :git
 # set :scm, :git
@@ -27,13 +27,20 @@ set :linked_files, %w{config/database.yml config/auth.txt}
 
 # Default value for linked_dirs is []
 set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle
-    public/system public/assets public/uploads public/quality}
+    public/system public/uploads public/quality}
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
 
 # Default value for keep_releases is 5
 # set :keep_releases, 5
+
+# rbenv
+set :rbenv_type, :user
+set :rbenv_ruby, '2.1.2'
+set :rbenv_prefix, "RBENV_ROOT=#{fetch(:rbenv_path)} RBENV_VERSION=#{fetch(:rbenv_ruby)} #{fetch(:rbenv_path)}/bin/rbenv exec"
+set :rbenv_map_bins, %w{rake gem bundle ruby rails}
+set :rbenv_roles, :all
 
 namespace :deploy do
 
