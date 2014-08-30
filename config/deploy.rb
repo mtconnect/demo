@@ -46,9 +46,11 @@ namespace :deploy do
     run "ln -nfs #{shared_path}/config/auth.txt #{release_path}/config/auth.txt"
   end
   
-  task :symlink_uploads, rolse: :app do
+  task :symlink_uploads, roles: :app do
+    run "ln -nfs #{shared_path}/assets #{release_path}/public/assets"
     run "ln -nfs #{shared_path}/uploads #{release_path}/public/uploads"
-    run "ln -nfs #{shared_path}/inspections #{release_path}/public/inspections"
+    run "ln -nfs #{shared_path}/quality #{release_path}/public/quality"
+    run "ln -nfs #{shared_path}/system #{release_path}/public/system"
   end
   
 

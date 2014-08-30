@@ -1,7 +1,7 @@
 h1.select_Manufacturer {	text-align: center;	padding: 40px; } 
 
 #header {
-    background:url(/assets/head_bg.png);
+    background: url(image-path('head_bg.png'));
     height: 150px;
 } 
 .section {
@@ -14,7 +14,7 @@ h1.tab {
 
 .section_content {
     overflow:hidden;
-    background:url(/assets/section_bg.png) repeat-y;
+    background:url(image-path('section_bg.png')) repeat-y;
 }
 
 div.container {
@@ -43,11 +43,11 @@ img.disabled {
 }
 
 .device_head {
-    background:url(/assets/applications_text_bg.png) no-repeat;
+    background:url(image-path('applications_text_bg.png')) no-repeat;
 }
 
 .applications_head {
-    background:url(/assets/applications_text_bg.png) no-repeat;
+    background:url(image-path('applications_text_bg.png')) no-repeat;
 }
 
 .section_content ul {
@@ -68,7 +68,7 @@ img.disabled {
 }
 
 .manufacturer_logo {
-    background:url(/assets/logo_bg.png) no-repeat scroll 50% 50%;
+    background:url(image-path('logo_bg.png')) no-repeat scroll 50% 50%;
     display:table-cell;
     text-align:center;
     vertical-align:middle;
