@@ -39,6 +39,7 @@ gem 'capistrano', '~> 3.2'
 gem 'capistrano-rbenv', '~> 2.0'
 gem 'capistrano-bundler', '~> 1.1'
 gem 'capistrano-rails', '~> 1.1'
+# gem 'capistrano-thin'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

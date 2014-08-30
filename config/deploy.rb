@@ -45,10 +45,14 @@ set :rbenv_roles, :all
 namespace :deploy do
 
   desc 'Restart application'
-  task :restart do
-    on roles(:app), in: :sequence, wait: 5 do
-      # Your restart mechanism here, for example:
-      # execute :touch, release_path.join('tmp/restart.txt')
+
+  [:start :stop :restart].each do |command|
+    task command do
+      on roles(:app), in: :sequence, wait: 5 do
+        execute :bundle, "exec thin -C /etc/thin/imts_demo.yml #{command}"
+        # Your restart mechanism here, for example:
+        # execute :touch, release_path.join('tmp/restart.txt')
+      end
     end
   end
 
