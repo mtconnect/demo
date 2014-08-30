@@ -2,7 +2,7 @@ class Device < ActiveRecord::Base
   attr_accessible :name, :url, :enabled, :on_time, :off_time, 
                   :description, :location, :logo, :picture, :in_cycle,
                   :logo_cache, :picture_cache, :daily_utilization,
-                  :cutting_tool, :inspection_plans, :inspection_results, 
+                  :cutting_tool, :quality_report,
                   :has_utilization
                   
   attr_reader :cutting_tool_doc
@@ -164,12 +164,12 @@ class Device < ActiveRecord::Base
     end
   end
   
-  def has_inspection(asset_id)
-    File.exists?("#{Rails.root}/public/inspections/#{id}/#{asset_id}.html")
+  def has_quality_report?(asset_id)
+    File.exists?("#{Rails.root}/public/quality/#{id}/#{asset_id}.html")
   end
   
-  def format_inspection_report(asset_id)
-    file_name = "/inspections/#{id}/#{asset_id}.html"
+  def format_quality_report(asset_id)
+    file_name = "/quality/#{id}/#{asset_id}.html"
     full_path = "#{Rails.root}/public/#{file_name}"
     if File.exists?(full_path)
       mtime = File.stat(full_path).mtime.to_i
@@ -179,21 +179,24 @@ class Device < ActiveRecord::Base
     end
   end
   
-  def generate_inspection(asset_id)
-    file_name = "#{Rails.root}/public/inspections/#{id}/#{asset_id}.html"
-    logger.info "#{id} - Generating inspection for #{asset_id} to #{file_name}"
+  def generate_quality_report(asset_id)
+    file_name = "#{Rails.root}/public/quality/#{id}/#{asset_id}.html"
+    logger.info "#{id} - Generating quality report for #{asset_id} to #{file_name}"
     
     Dir.mkdir(File.dirname(file_name)) unless File.exists?(File.dirname(file_name))
     
     doc = get_asset(asset_id)
-    gen = FaiGenerator.new(doc) 
-    File.open(file_name, 'w') do |f|
-      f.write gen.generate
-    end    
+    gen = QualityGenerator.new(doc)
+    gen.parse
+    gen.generate_table(file_name)
+
+  rescue
+    logger.error "Parse and generate of quality report failed #{self.id} #{asset_id}: #{$!}"
+    logger.error $!.backtrace.join("\n")
   end
   
   def has_asset?
-    self.cutting_tool? or self.inspection_results? or self.inspection_plans?
+    self.cutting_tool? or self.quality_report?
   end
   
   def show_utilization?
@@ -271,17 +274,11 @@ class Device < ActiveRecord::Base
               self.update_attributes(:cutting_tool => asset_id)
             elsif asset_type == 'Quality'
               Thread.new { 
-                generate_inspection(asset_id) 
-                self.update_attributes(:inspection_results => asset_id)
+                generate_quality_report(asset_id)
+                self.update_attributes(:quality_report => asset_id)
                 ActiveRecord::Base.connection_pool.release_connection                
               }
-            elsif asset_type == 'Quality'
-              Thread.new { 
-                generate_inspection(asset_id) 
-                self.update_attributes(:inspection_plans => asset_id)
-                ActiveRecord::Base.connection_pool.release_connection                
-              }
-            end                                
+            end
           rescue
             logger.error "#{id} - AssetChanged: #{$!}"
           end

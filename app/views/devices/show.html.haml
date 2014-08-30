@@ -28,12 +28,9 @@
     -if @device.has_cutting_tool?
       %li
         %a{"data-toggle" => "tab", :href => "#cutting_tool"} Cutting Tool 
-    -if @device.inspection_results?
+    -if @device.quality_report?
       %li
-        %a{"data-toggle" => "tab", :href => "#inspection_results"} Inspection Results 
-    -if @device.inspection_plans?
-      %li
-        %a{"data-toggle" => "tab", :href => "#inspection_plans"} Inspection Plans
+        %a{"data-toggle" => "tab", :href => "#quality_report"} Quality Report
   .tab-content
     -if @device.show_utilization?
       .tab-pane.fade#utilization
@@ -43,27 +40,11 @@
       .tab-pane.fade#cutting_tool
         .tools
           =render "tools"
-          
-    -if @device.inspection_results? and @device.has_inspection(@device.inspection_results)
-      .tab-pane.fade#inspection_results
-        .fai
-          %h4
-            %p
-              This is an Aerospace Standard First Article Inspection Report (AS9102). 
-              First Article Inspection Report (FAIR) can be documented on Forms 1 (Part Number Accountability), 2 (Product Accountability), and 3 (Characteristic Accountability, Verification and Compatibility Evaluation). For this example we have documented Forms 1 and Forms 3.
-            %p
-              The purpose of the First Article Inspection is to give objective evidence that all engineering, design and specification requirements are correctly understood, accounted for, verified, and recorded. The purpose of this standard is to provide a consistent documentation requirement for aerospace components FAI.
-            
-          %iframe{"src" => @device.format_inspection_report(@device.inspection_results)}
-          
-    -if @device.inspection_plans? and @device.has_inspection(@device.inspection_plans)
-      .tab-pane.fade#inspection_plans
-        .fai
-        %h4
-          %p
-            This is an AS9102 – Aerospace Standard First Article Inspection Plan. 
-            First Article Inspection Report (FAIR) can be documented on Forms 1 (Part Number Accountability), 2 (Product Accountability), and 3 (Characteristic Accountability, Verification and Compatibility Evaluation. For this example we have documented Forms 1 and Forms 3.
-          %p
-            The purpose of the First Article Inspection is to give objective evidence that all engineering, design and specification requirements are correctly understood, accounted for, verified, and recorded. The purpose of this standard is to provide a consistent documentation requirement for aerospace components FAI.
 
-          %iframe{"src" => @device.format_inspection_report(@device.inspection_plans)}
+    -if @device.quality_report? and @device.has_quality_report?(@device.quality_report)
+      .tab-pane.fade#quality_report
+        .quality
+          %h2
+            A representation of a QIF Statistics report
+
+          %iframe{"src" => @device.format_quality_report(@device.quality_report)}

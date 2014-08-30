@@ -5,7 +5,6 @@ require Rails.root.join("collector/collector")
 
 begin
   collector = Collector.new(Device.logger)
-  collector.start_long_pull
 
   while true
     begin

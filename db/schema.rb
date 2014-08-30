@@ -9,11 +9,11 @@
 # from scratch. The latter is a flawed and unsustainable approach (the more migrations
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
-# It's strongly recommended to check this file into your version control system.
+# It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120907202214) do
+ActiveRecord::Schema.define(version: 20140830031612) do
 
-  create_table "alarms", :force => true do |t|
+  create_table "alarms", force: true do |t|
     t.integer  "device_id"
     t.datetime "time"
     t.datetime "cleared"
@@ -22,52 +22,52 @@ ActiveRecord::Schema.define(:version => 20120907202214) do
     t.string   "severity"
     t.string   "code"
     t.string   "description"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
-  add_index "alarms", ["device_id"], :name => "index_alarms_on_device_id"
+  add_index "alarms", ["device_id"], name: "index_alarms_on_device_id", using: :btree
 
-  create_table "app_pictures", :force => true do |t|
+  create_table "app_pictures", force: true do |t|
     t.string   "file"
     t.integer  "app_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  add_index "app_pictures", ["app_id"], :name => "index_app_pictures_on_app_id"
+  add_index "app_pictures", ["app_id"], name: "index_app_pictures_on_app_id", using: :btree
 
-  create_table "apps", :force => true do |t|
+  create_table "apps", force: true do |t|
     t.string   "name"
     t.text     "url"
     t.boolean  "enabled"
     t.text     "description"
     t.string   "location"
     t.string   "logo"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
-  add_index "apps", ["name"], :name => "index_apps_on_name"
+  add_index "apps", ["name"], name: "index_apps_on_name", using: :btree
 
-  create_table "cycles", :force => true do |t|
+  create_table "cycles", force: true do |t|
     t.integer  "device_id"
     t.integer  "started"
     t.integer  "stopped"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  add_index "cycles", ["device_id", "started", "stopped"], :name => "cycle_index"
+  add_index "cycles", ["device_id", "started", "stopped"], name: "cycle_index", using: :btree
 
-  create_table "daily_utilizations", :force => true do |t|
+  create_table "daily_utilizations", force: true do |t|
     t.integer  "utilization"
     t.integer  "device_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
-  create_table "devices", :force => true do |t|
+  create_table "devices", force: true do |t|
     t.string   "name"
     t.text     "url"
     t.boolean  "enabled"
@@ -77,33 +77,32 @@ ActiveRecord::Schema.define(:version => 20120907202214) do
     t.string   "picture"
     t.integer  "on_time"
     t.integer  "off_time"
-    t.boolean  "in_cycle",           :default => false
-    t.datetime "created_at",                            :null => false
-    t.datetime "updated_at",                            :null => false
+    t.boolean  "in_cycle",          default: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
     t.string   "cutting_tool"
-    t.string   "inspection_plans"
-    t.string   "inspection_results"
     t.integer  "daily_utilization"
     t.boolean  "has_utilization"
+    t.string   "quality_report"
   end
 
-  add_index "devices", ["name"], :name => "index_devices_on_name"
+  add_index "devices", ["name"], name: "index_devices_on_name", using: :btree
 
-  create_table "hourly_utilizations", :force => true do |t|
+  create_table "hourly_utilizations", force: true do |t|
     t.integer  "hour"
     t.integer  "utilization"
     t.integer  "device_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
-  add_index "hourly_utilizations", ["device_id", "hour"], :name => "hourly_utilization_index"
+  add_index "hourly_utilizations", ["device_id", "hour"], name: "hourly_utilization_index", using: :btree
 
-  create_table "utilizations", :force => true do |t|
+  create_table "utilizations", force: true do |t|
     t.integer  "device_id"
     t.boolean  "in_cycle"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

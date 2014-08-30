@@ -65,4 +65,4 @@ module IMTS
   end
 end
 
-require 'fai'
+require 'qif_format'

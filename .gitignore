@@ -23,6 +23,7 @@
 #carrierwave files
 public/uploads
 public/inspections
+public/quality
 public/assets
 public/images
 public/system
@@ -42,3 +43,4 @@ shared
 
 gems
 .ruby-version
+.idea

@@ -55,10 +55,10 @@ class Collector
         logger.info "#{device.id} - Connecting to device #{device.url}"
         device.reload        
         return unless device.enabled
-        
+
         nxt = get_current(device, @@selector)
         logger.info "Will start at #{nxt}"
-                
+
         client, path = http_client(device)
         path << "sample?#{@@selector}&from=#{nxt}&frequency=1000&count=1000"
 
@@ -73,12 +73,12 @@ class Collector
             device.reload
             return if !device.enabled
             break if device.url != old_url
-                        
+
             device.handle_update(xml)
           end
           ActiveRecord::Base.connection_pool.release_connection
         end
-           
+
       rescue ActiveRecord::RecordNotFound
         logger.warn "#{device.id} - Device has been deleted"
         return
@@ -87,8 +87,8 @@ class Collector
         # Just keep retrying. This is usually indicative of a connection problem.
         # Should clean up and only retry connection errors.
         logger.warn "#{device.id} - Could not connect to #{device.url}: #{$!}"
-        
-      ensure 
+
+      ensure
         device.disconnected
         if client
           client.finish rescue logger.warn "#{device.id} - (long_pull) client finish failed: #{$!}"
@@ -115,7 +115,7 @@ class Collector
   end
 
   def check_for_new_devices    
-    new_devices.each do |id| 
+    new_devices.each do |id|
       threadify(id)
     end
   end
