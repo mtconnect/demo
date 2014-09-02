@@ -193,7 +193,7 @@ class QualityGenerator
       column << item.nominal.target
       column << item.nominal.definition.max
       
-      header << 'Stattistical Summary' if first
+      header << 'Statistical Summary' if first
       column << ''
       
       if first
