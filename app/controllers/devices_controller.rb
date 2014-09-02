@@ -42,8 +42,16 @@ class DevicesController < ApplicationController
 
   def update 
     @device = Device.find(params[:id])
+    qrf = params[:device].delete('quality_report_file')
+    params[:device][:quality_report] = 'SPC_1' if qrf
     if @device.update_attributes(params[:device])
       flash[:notice] = "Device updated successfully"
+
+      if qrf
+        doc = REXML::Document.new(qrf.read)
+        @device.generate_quality_report('SPC_1', doc)
+      end
+
       redirect_to devices_path
     else
       flash.now[:error] = "Device was not updated"

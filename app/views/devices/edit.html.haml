@@ -55,5 +55,9 @@
     =f.label :off_time, 'Hour production stops (CDT for show)'
     =f.select :off_time, [15, 16, 17, 18, 19, 20, 21, 22, 23]
 
+  .form_group
+    =f.label 'SPC Quality Report'
+    =f.file_field :quality_report_file
+
   %br
   =f.submit

@@ -4,6 +4,33 @@
     %br 
     to view MTConnect in action
 
+#devices.section
+  %h1.tab
+    =image_tag("text_devices.png", :alt => "Devices", :class => 'device_head')
+  .section_top
+    =image_tag("section_top.png")
+  .section_content
+    -if session[:authorized]
+      .row
+        .col-md-2.col-md-offset-9
+          =link_to "New Device", new_device_path, :class => "btn btn-primary"
+    %ul
+      -@devices.each do |device|
+        %li
+          %a{:href => device_path(device), :class => 'manufacturer_logo' }
+            -if device.logo?
+              =image_tag device.logo.thumb.url 
+            -else
+              =device.name
+          -if session[:authorized]
+            .operations          
+              =link_to "Edit", edit_device_path(device), :class => "btn btn-primary"
+              =link_to "Delete", device_path(device), :method => :delete, :confirm => "Are you sure?", :class => "btn btn-primary"
+              -if !device.enabled
+                =image_tag('disabled.png', :alt => 'disabled', :class => 'disabled')
+      .clear
+  .section_bottom
+    =image_tag("section_bottom.png")
 
 #apps.section
   %h1.tab
@@ -34,31 +61,3 @@
   .section_bottom
     =image_tag("section_bottom.png")
 
-
-#devices.section
-  %h1.tab
-    =image_tag("text_devices.png", :alt => "Devices", :class => 'device_head')
-  .section_top
-    =image_tag("section_top.png")
-  .section_content
-    -if session[:authorized]
-      .row
-        .col-md-2.col-md-offset-9
-          =link_to "New Device", new_device_path, :class => "btn btn-primary"
-    %ul
-      -@devices.each do |device|
-        %li
-          %a{:href => device_path(device), :class => 'manufacturer_logo' }
-            -if device.logo?
-              =image_tag device.logo.thumb.url 
-            -else
-              =device.name
-          -if session[:authorized]
-            .operations          
-              =link_to "Edit", edit_device_path(device), :class => "btn btn-primary"
-              =link_to "Delete", device_path(device), :method => :delete, :confirm => "Are you sure?", :class => "btn btn-primary"
-              -if !device.enabled
-                =image_tag('disabled.png', :alt => 'disabled', :class => 'disabled')
-      .clear
-  .section_bottom
-    =image_tag("section_bottom.png")

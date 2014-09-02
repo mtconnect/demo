@@ -13,7 +13,7 @@ class QualityGenerator
 
   def initialize(doc)
     @doc = doc
-    @qif = doc.elements['//Quality']
+    @qif = doc.elements['//QIFDocument']
     @devices = {}
     @product = nil
   end  
@@ -21,7 +21,7 @@ class QualityGenerator
   Device = Struct.new(:accuracy, :description, :id, :manufacturer, :name, :resolution, :serialNumber, :type)  
   
   def parse_devices
-    @qif.each_element("QIFDocument/MeasurementResources/MeasurementDevices/*") do |device|
+    @qif.each_element("MeasurementResources/MeasurementDevices/*") do |device|
       attrs = {type: device.name, id: device.attributes['id']}
       device.each_element_with_text do |f|
         text = f.text.strip
@@ -47,7 +47,7 @@ class QualityGenerator
   def parse_product
     root = nil
     parts = []
-    @qif.each_element('QIFDocument/Product/*') do |e|
+    @qif.each_element('Product/*') do |e|
       case e.name
       when 'PartSet'
         e.each_element('Part') do |part|
@@ -71,7 +71,7 @@ class QualityGenerator
   def parse_characteristics
     # definitions
     @definitions = {}      
-    @qif.each_element('QIFDocument/Characteristics/CharacteristicDefinitions/*') do |c|
+    @qif.each_element('Characteristics/CharacteristicDefinitions/*') do |c|
       id = c.attributes['id']
       name = c.elements['Name'].text
       min = c.elements['Tolerance/MinValue'].text
@@ -81,7 +81,7 @@ class QualityGenerator
     end
     
     @nominals = {}
-    @qif.each_element('QIFDocument/Characteristics/CharacteristicNominals/*') do |c|
+    @qif.each_element('Characteristics/CharacteristicNominals/*') do |c|
       id = c.attributes['id']
       def_id = c.elements['CharacteristicDefinitionId'].text
       target = c.elements['TargetValue'].text
@@ -96,7 +96,7 @@ class QualityGenerator
     end
     
     @items = {}
-    @qif.each_element('QIFDocument/Characteristics/CharacteristicItems/*') do |c|
+    @qif.each_element('Characteristics/CharacteristicItems/*') do |c|
       id = c.attributes['id']
       description = c.elements['Description'].text
       name = c.elements['Name'].text
@@ -123,7 +123,7 @@ class QualityGenerator
   def parse_results
     @results  = {}
     @actuals = {}
-    @qif.each_element('QIFDocument/MeasurementsResults/MeasurementResults') do |r|
+    @qif.each_element('MeasurementsResults/MeasurementResults') do |r|
       actuals = r.get_elements('MeasuredCharacteristics/CharacteristicActuals/*').map do |act|
         id = act.attributes['id']
         status = act.elements['Status/CharacteristicStatusEnum'].text
@@ -150,7 +150,7 @@ class QualityGenerator
   
   def parse_statistics
     @studies = []
-    @qif.each_element('QIFDocument/Statistics/StatisticalStudiesResults/' +
+    @qif.each_element('Statistics/StatisticalStudiesResults/' +
                       'CapabilityStudyResults/CharacteristicsStats/' + 
                       'DistanceBetweenCharacteristicStats') do |s|
       results = s.get_elements('Subgroup').map do |e|

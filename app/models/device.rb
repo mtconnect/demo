@@ -9,15 +9,17 @@ class Device < ActiveRecord::Base
   
   mount_uploader :logo, LogoUploader
   mount_uploader :picture, PictureUploader
-  validates_presence_of :name, :url, :on_time, :off_time,
+  validates_presence_of :name, :on_time, :off_time,
                        :description, :location, :logo                                           
-  
+
   has_many :alarms, :dependent => :destroy, :class_name => '::Alarm'
   has_many :cycles, :dependent => :destroy
   has_many :hourly_utilizations, :dependent => :destroy
   
   scope :active, lambda { |*obj| where(:enabled => true) }
-  
+  scope :url_not_null, lambda { |*obj| where.not(:url => nil) }
+  scope :with_url, lambda { |*obj| where.not(:url => "").merge(self.url_not_null) }
+
   class DataValue
     attr_reader :component, :component_name, :item, :name, :sub_type, :value 
     def initialize(component, component_name, item, name, sub_type, value)
@@ -60,6 +62,8 @@ class Device < ActiveRecord::Base
   end
   
   def get_data
+    return [] unless has_url?
+
     @asset = nil
     dest = URI.parse(self.url)
     client = response = nil
@@ -164,8 +168,9 @@ class Device < ActiveRecord::Base
     end
   end
   
-  def has_quality_report?(asset_id)
-    File.exists?("#{Rails.root}/public/quality/#{id}/#{asset_id}.html")
+  def has_quality_report?
+    self.quality_report? and
+      File.exists?("#{Rails.root}/public/quality/#{id}/#{quality_report}.html")
   end
   
   def format_quality_report(asset_id)
@@ -179,13 +184,13 @@ class Device < ActiveRecord::Base
     end
   end
   
-  def generate_quality_report(asset_id)
+  def generate_quality_report(asset_id, doc = nil)
     file_name = "#{Rails.root}/public/quality/#{id}/#{asset_id}.html"
     logger.info "#{id} - Generating quality report for #{asset_id} to #{file_name}"
     
     Dir.mkdir(File.dirname(file_name)) unless File.exists?(File.dirname(file_name))
     
-    doc = get_asset(asset_id)
+    doc = get_asset(asset_id) unless doc
     gen = QualityGenerator.new(doc)
     gen.parse
     gen.generate_table(file_name)
@@ -194,13 +199,17 @@ class Device < ActiveRecord::Base
     logger.error "Parse and generate of quality report failed #{self.id} #{asset_id}: #{$!}"
     logger.error $!.backtrace.join("\n")
   end
+
+  def has_url?
+    self.url and !self.url.empty?
+  end
   
   def has_asset?
     self.cutting_tool? or self.quality_report?
   end
   
   def show_utilization?
-    self.has_utilization? or !has_asset?
+    (self.has_url? and self.has_utilization?) or !has_asset?
   end
 
   def handle_update(xml)

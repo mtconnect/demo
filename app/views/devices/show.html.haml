@@ -28,7 +28,7 @@
     -if @device.has_cutting_tool?
       %li
         %a{"data-toggle" => "tab", :href => "#cutting_tool"} Cutting Tool 
-    -if @device.quality_report?
+    -if @device.has_quality_report?
       %li
         %a{"data-toggle" => "tab", :href => "#quality_report"} Quality Report
   .tab-content
@@ -41,7 +41,7 @@
         .tools
           =render "tools"
 
-    -if @device.quality_report? and @device.has_quality_report?(@device.quality_report)
+    -if @device.has_quality_report?
       .tab-pane.fade#quality_report
         .quality
           %h2

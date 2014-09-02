@@ -56,7 +56,7 @@ class Collector
         # Reload the data in the device.
         logger.info "#{device.id} - Connecting to device #{device.url}"
         device.reload        
-        return unless device.enabled
+        return unless device.enabled and device.has_url?
 
         nxt = get_current(device, @@selector)
         logger.info "Will start at #{nxt}"
@@ -73,7 +73,7 @@ class Collector
           ActiveRecord::Base.connection_pool.release_connection
           @@update_mutex.synchronize do
             device.reload
-            return if !device.enabled
+            return unless device.enabled and device.has_url?
             break if device.url != old_url
 
             device.handle_update(xml)
@@ -113,7 +113,7 @@ class Collector
   end
 
   def new_devices
-    Set.new(Device.active.map(&:id)) - @threads
+    Set.new(Device.active.with_url.map(&:id)) - @threads
   end
 
   def check_for_new_devices    
