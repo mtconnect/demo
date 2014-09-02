@@ -19,6 +19,8 @@
 *.swo
 *.tgz
 *.gz
+*.iml
+imtsdemo*.sql
 
 #carrierwave files
 public/uploads
