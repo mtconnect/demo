@@ -67,11 +67,11 @@ class Device < ActiveRecord::Base
     @asset = nil
     dest = URI.parse(self.url)
     client = response = nil
-    Timeout::timeout(7) do 
+    Timeout::timeout(3) do
       Net::HTTP.start(dest.host, dest.port) do |client|
         response = client.get("#{dest.path}/current")
       end
-    end    
+    end
     if Net::HTTPOK === response
       document = REXML::Document.new(response.body)
       components = []
