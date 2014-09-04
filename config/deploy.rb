@@ -47,7 +47,6 @@ set :bundle_binstubs, -> { shared_path.join('binstubs') }
 
 # Puma
 # Defaults should work from puma cap file
-set :puma_cmd,"#{fetch(:bundle_cmd, 'bundle')} exec puma"
 set :puma_env, fetch(:rack_env, fetch(:rails_env, 'production'))
 set :puma_state, "#{shared_path}/pids/puma.state"
 set :puma_role, :app
@@ -109,6 +108,7 @@ namespace :deploy do
       # end
     end
   end
+  after :publishing, :restart
 
   before :starting,     :check_revision
 end

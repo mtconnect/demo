@@ -4,7 +4,7 @@ namespace :puma do
   task :start do
     on roles(:app), in: :sequence, wait: 5 do
       within current_path do
-        execute :bundle, "exec pumactl #{start_options} start", :pty => false
+        execute :bundle, "exec puma #{start_options} start", :pty => false
       end
     end
   end
@@ -47,7 +47,7 @@ namespace :puma do
   end
 
   def start_options
-    "-q -C #{config_file}"
+    "-q -d -C #{config_file}"
   end
 
   def config_file
