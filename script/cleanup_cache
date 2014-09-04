@@ -1,0 +1,3 @@
+#!/bin/sh
+
+find /home/deploy/imtsdemo/current/tmp/fragment_cache -amin +30 -exec rm {} \;
