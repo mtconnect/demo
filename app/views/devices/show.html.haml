@@ -1,22 +1,24 @@
 #device
-  #device-heading
-    #device-logo
-      -if @device.logo?
-        =image_tag @device.logo.button.url 
-      -else
-        =@device.name
-    #device-description
-      %p.text
-        =raw @device.description
-      %p.location
-        %span=@device.location
-  .border
+  -cache ['heading', @device] do
+    #device-heading
+      #device-logo
+        -if @device.logo?
+          =image_tag @device.logo.button.url
+        -else
+          =@device.name
+      #device-description
+        %p.text
+          =raw @device.description
+        %p.location
+          %span=@device.location
+    .border
   #device-detail
-    .device-picture
-      -if @device.picture?
-        =image_tag @device.picture.display.url 
-      -else
-        No Picture
+    -cache ['detail', @device] do
+      .device-picture
+        -if @device.picture?
+          =image_tag @device.picture.display.url
+        -else
+          No Picture
     .hmi{'data-id' => dom_id(@device)}
       =render "hmi"
       

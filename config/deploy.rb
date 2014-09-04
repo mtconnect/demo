@@ -26,8 +26,8 @@ set :deploy_to, '/home/deploy/imtsdemo'
 set :linked_files, %w{config/database.yml config/auth.txt}
 
 # Default value for linked_dirs is []
-set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets vendor/bundle
-    public/system public/uploads public/quality tmp/pids}
+set :linked_dirs, %w{log vendor/bundle
+    public/system public/uploads public/quality}
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
@@ -99,16 +99,16 @@ namespace :deploy do
     end
   end
 
-
-  after :restart, :clear_cache do
-    on roles(:web), in: :groups, limit: 3, wait: 10 do
-      # Here we can do anything such as:
-      # within release_path do
-      #   execute :rake, 'cache:clear'
-      # end
+  task :make_cache do
+    on roles(:app), in: sequence do
+      within release_path do
+         execute "mkdir -p tmp/framment_cache"
+      end
     end
   end
-  after :publishing, :restart
 
+  before :restart, :make_cache
+  before :start, :make_cache
+  after :publishing, :restart
   before :starting,     :check_revision
 end

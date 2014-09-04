@@ -7,7 +7,9 @@ class DevicesController < ApplicationController
       @apps = App.all.order('name') 
     else
       @devices = Device.active.order('name') 
-      @apps = App.active.order('name') 
+      @apps = App.active.order('name')
+      @cache_key = [@devices.max_by(&:updated_at), @apps.max_by(&:updated_at)].
+          max_by(&:updated_at).try(:updated_at).to_i.to_s
     end
   end
 
