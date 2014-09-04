@@ -32,6 +32,7 @@ class AppsController < ApplicationController
   def update
     @app = App.find(params[:id])
     @app.attributes = params[:app]
+    @app.touch
     if @app.save
       flash[:notice] = "Application has been updated successfully"
       expire_fragment('all_devices_and_apps')
