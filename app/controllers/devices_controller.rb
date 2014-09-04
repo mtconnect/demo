@@ -31,6 +31,7 @@ class DevicesController < ApplicationController
     @device = Device.new(params[:device])
     if @device.save
       flash[:notice] = "Device created successfully."
+      expire_fragment('all_devices_and_apps')
       redirect_to devices_path
     else
       flash.now[:error] = "There were problems in creating a device"
@@ -53,7 +54,7 @@ class DevicesController < ApplicationController
         doc = REXML::Document.new(qrf.read)
         @device.generate_quality_report('SPC_1', doc)
       end
-
+      expire_fragment('all_devices_and_apps')
       redirect_to devices_path
     else
       flash.now[:error] = "Device was not updated"
@@ -65,6 +66,7 @@ class DevicesController < ApplicationController
     @device = Device.find(params[:id])
     if @device.destroy
       flash[:notice] = "Device deleted successfully"
+      expire_fragment('all_devices_and_apps')
       redirect_to devices_path
     else
       flash[:notice] = "Device was not deleted"

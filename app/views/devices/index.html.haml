@@ -1,4 +1,4 @@
--cache_unless(session[:authorized], @cache_key) do
+-cache_unless(session[:authorized], 'all_devices_and_apps', skip_digest: true) do
   %p
     %h1.select_Manufacturer.white
       Select a Device or an Application below

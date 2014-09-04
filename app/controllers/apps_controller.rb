@@ -13,6 +13,7 @@ class AppsController < ApplicationController
     @app = App.new(params[:app])
     if @app.save
       flash[:notice] = "Application has been saved successfully"
+      expire_fragment('all_devices_and_apps')
       redirect_to root_path
     else
       flash.now[:error] = "Application cannot be saved."
@@ -32,6 +33,7 @@ class AppsController < ApplicationController
     @app = App.find(params[:id])
     if @app.update_attributes(params[:app])
       flash[:notice] = "Application has been updated successfully"
+      expire_fragment('all_devices_and_apps')
       redirect_to root_path
     else
       flash.now[:error] = "Application cannot be updated."
@@ -44,6 +46,7 @@ class AppsController < ApplicationController
     @app = App.find(params[:id])
     if @app.destroy
       flash[:notice] = "Application has been deleted successfully"
+      expire_fragment('all_devices_and_apps')
       redirect_to root_path
     else
       flash[:error] = "Application cannot be deleted."
