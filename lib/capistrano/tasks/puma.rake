@@ -4,7 +4,7 @@ namespace :puma do
   task :start do
     on roles(:app), in: :sequence, wait: 5 do
       within current_path do
-        execute :bundle, "exec pumactl #{start_options}", :pty => false
+        execute :bundle, "exec pumactl #{start_options} start", :pty => false
       end
     end
   end
@@ -47,11 +47,7 @@ namespace :puma do
   end
 
   def start_options
-    if config_file
-      "-q -d -e #{puma_env} -C #{config_file}"
-    else
-      "-q -d -e #{puma_env} -b '#{puma_socket}' -S #{state_path} --control 'unix://#{shared_path}/sockets/pumactl.sock'"
-    end
+    "-q -C #{config_file}"
   end
 
   def config_file

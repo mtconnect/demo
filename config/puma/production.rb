@@ -4,6 +4,8 @@ app_root = '/home/deploy/imtsdemo/'
 shared_path = "#{app_root}/shared"
 current_path = "#{app_root}/current"
 
+rackup "#{current_path}/config.ru"
+
 directory current_path
 environment "production"
 daemonize false
