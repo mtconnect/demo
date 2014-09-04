@@ -99,16 +99,6 @@ namespace :deploy do
     end
   end
 
-  task :make_cache do
-    on roles(:app), in: sequence do
-      within release_path do
-         execute "mkdir -p tmp/framment_cache"
-      end
-    end
-  end
-
-  before :restart, :make_cache
-  before :start, :make_cache
   after :publishing, :restart
   before :starting,     :check_revision
 end
