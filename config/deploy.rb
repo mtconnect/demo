@@ -1,7 +1,7 @@
 # config valid only for Capistrano 3.1
 lock '3.2.1'
 
-set :application, 'imtsdemo_new'
+set :application, 'imtsdemo'
 set :repo_url, 'git@github.com:mtconnect/demo.git'
 
 # Default branch is :master
@@ -27,7 +27,7 @@ set :linked_files, %w{config/database.yml config/auth.txt}
 
 # Default value for linked_dirs is []
 set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets vendor/bundle
-    public/system public/uploads public/quality}
+    public/system public/uploads public/quality tmp/pids}
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
@@ -45,22 +45,61 @@ set :rbenv_roles, :all
 # Bundler
 set :bundle_binstubs, -> { shared_path.join('binstubs') }
 
+# Puma
+# Defaults should work from puma cap file
+set :puma_cmd,"#{fetch(:bundle_cmd, 'bundle')} exec puma"
+set :puma_env, fetch(:rack_env, fetch(:rails_env, 'production'))
+set :puma_state, "#{shared_path}/pids/puma.state"
+set :puma_role, :app
+
+
+namespace :puma do
+  desc 'Create Directories for Puma Pids and Socket'
+  task :make_dirs do
+    on roles(:app) do
+      execute "mkdir -p /tmp/sockets"
+      execute "mkdir -p #{shared_path}/pids"
+    end
+  end
+end
+
+
 namespace :deploy do
-
-  desc 'Restart application'
-
-  [:start, :stop, :restart].each do |command|
-    task command do
-      on roles(:app), in: :sequence, wait: 5 do
-        within current_path do
-          execute :bundle, "exec thin -C /etc/thin/imts_demo.yml #{command}"
-          execute "pkill -f collector"
-        end
+  desc "Make sure local git is in sync with remote."
+  task :check_revision do
+    on roles(:app) do
+      unless `git rev-parse HEAD` == `git rev-parse origin/master`
+        puts "WARNING: HEAD is not the same as origin/master"
+        puts "Run `git push` to sync changes."
+        exit
       end
     end
   end
 
-  after :publishing, :restart
+  desc 'Restart application'
+  task :restart do
+    on roles(:app), in: :sequence, wait: 5 do
+      invoke 'puma:phased_restart'
+      execute "pkill -f collector"
+    end
+  end
+
+  desc "start"
+  task :start do
+    on roles(:app), in: :sequence, wait: 5 do
+      invoke "puma:start"
+      # initctl start collector
+    end
+  end
+
+  desc "stop"
+  task :stop do
+    on roles(:app), in: :sequence, wait: 5 do
+      invoke "puma:stop"
+      # initctl stop collector
+    end
+  end
+
 
   after :restart, :clear_cache do
     on roles(:web), in: :groups, limit: 3, wait: 10 do
@@ -71,4 +110,5 @@ namespace :deploy do
     end
   end
 
+  before :starting,     :check_revision
 end

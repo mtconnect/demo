@@ -28,7 +28,7 @@ gem 'haml-rails'
 gem 'carrierwave'
 gem "mini_magick" 
 gem "nested_form"
-gem 'thin'
+gem 'puma'
 gem "highcharts-rails"
 gem "whenever"
 gem "underscore-rails"
@@ -43,19 +43,3 @@ gem 'capistrano', '~> 3.2'
 gem 'capistrano-rbenv', '~> 2.0'
 gem 'capistrano-bundler', '~> 1.1'
 gem 'capistrano-rails', '~> 1.1'
-# gem 'capistrano-thin'
-
-# To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
-
-# To use Jbuilder templates for JSON
-# gem 'jbuilder'
-
-# Use unicorn as the app server
-# gem 'unicorn'
-
-# Deploy with Capistrano
-# gem 'capistrano'
-
-# To use debugger
-# gem 'debugger'
