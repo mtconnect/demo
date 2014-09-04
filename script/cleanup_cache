@@ -1,4 +1,4 @@
 #!/bin/sh
 
-find /home/deploy/imtsdemo/current/tmp/fragment_cache -type f -amin +30 -type f -exec rm {} \;
-find /home/deploy/imtsdemo/backup -type f -atime +10 -exec rm {} \;
+find /home/deploy/imtsdemo/current/tmp/fragment_cache -type f -amin +30 -type f -delete
+find /home/deploy/imtsdemo/current/tmp/fragment_cache -empty -delete
