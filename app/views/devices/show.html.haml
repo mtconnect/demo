@@ -20,8 +20,11 @@
         -else
           No Picture
     .hmi{'data-id' => dom_id(@device)}
-      =render "hmi"
-      
+      %p.text
+        %b
+          %em
+            %br/
+            Please wait...
 #device-tabs  
   %ul.nav.nav-tabs
     -if @device.show_utilization?
@@ -37,16 +40,18 @@
     -if @device.show_utilization?
       .tab-pane.fade#utilization
         =render "utilization"
-        
     -if @device.has_cutting_tool?
       .tab-pane.fade#cutting_tool
         .tools
           =render "tools"
-
     -if @device.has_quality_report?
       .tab-pane.fade#quality_report
         .quality
           %h2
-            A representation of a QIF Statistics report
+            The following is a Statistical Process Control report analyzing four characteristics.
+            Along with the actual measurements, there are eight statistics being computed. Average,
+            and standard deviation, Cp (process capability), Cpk (process capability index),
+            Pp (process performance), and Ppk (process performance index). The report also provides
+            the upper and lower tolerances for the measurements.
 
           %iframe{"src" => @device.format_quality_report(@device.quality_report)}

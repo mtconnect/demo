@@ -16,9 +16,7 @@ class DevicesController < ApplicationController
   def show
     @device = Device.find(params[:id])
     respond_to do |format|
-      format.html do
-        @data = @device.get_data
-      end
+      format.html {}
       format.json { render :json => @device.to_json(:methods => [:elapsed_hourly_utilization, :elapsed_daily_utilization]) }
     end
   end

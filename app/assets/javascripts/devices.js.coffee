@@ -33,6 +33,7 @@ $(document).ready ->
 
   if $(".hmi").length > 0
     device_id = $(".hmi").attr("data-id").split("_")[1]
+    window.setTimeout(window.IMTS.fetch_hmi, 2, device_id)
     window.IMTS.fetch_timely(device_id)
 
   if $(".graph").length > 0
