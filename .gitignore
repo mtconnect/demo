@@ -21,6 +21,8 @@
 *.gz
 *.iml
 imtsdemo*.sql
+vendor/bundle
+out
 
 #carrierwave files
 public/uploads
