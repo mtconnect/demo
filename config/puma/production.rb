@@ -1,5 +1,8 @@
 #!/usr/bin/env puma
 
+require 'fileutils'
+FileUtils.mkdir_p('/tmp/sockets', :mode => 0775)
+
 app_root = '/home/deploy/imtsdemo/'
 shared_path = "#{app_root}/shared"
 current_path = "#{app_root}/current"
